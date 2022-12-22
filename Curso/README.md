@@ -34,5 +34,46 @@ public class Main {
 
 No exemplo acima usamos o método .next() que lê algo digitado no terminal. Por fim fechamos a conexão com o objeto.
 
+Java disponibiliza alguns métodos para leitura, vejamos:
+
+```java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        int age;
+        float weight;
+        double height;
+        String name;
+
+        Scanner sc = new Scanner(System.in);
+
+        // Lê um número inteiro
+        System.out.print("Digite a sua idade: ");
+        age = sc.nextInt();
+
+        // Lê um número decimal
+        System.out.print("Digite o seu peso: ");
+        weight = sc.nextFloat();
+
+        // Lê um número decimal de dupla precisão
+        System.out.print("Digite a sua altura: ");
+        height = sc.nextDouble();
+
+        // Lê qualquer coisa digitada no terminal
+        System.out.print("Digite o seu nome: ");
+        name = sc.next();
+
+        // Exibe o resultado na tela
+        System.out.printf("\nName: %s\nAge: %d\nHeight: %.1f\nWeight: %.1f\n", name, age, height,weight);
+        // Fecha a conexão com o objeto
+        sc.close();
+    }
+}
+```
+
+NOTA: O tipo double pega a assinatura do sistema, ou seja, se seu sistema está em PT-BR isso significa dizer que ele 
+vai receber dados usando vírgula, caso contrário ele recebe usando ponto. 
+
 
 [Voltar](../README.md)
