@@ -2,23 +2,25 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // Cria um objeto do tipo Scanner
+        int num;
+        String str1, str2, str3;
+
         Scanner sc = new Scanner(System.in);
 
-        String name, age, weight, height;
+        // Recebe um valor inteiro
+        num = sc.nextInt();
 
-        // O método .nextLine() lê uma string
-        System.out.print("Digite o seu nome: ");
-        name = sc.nextLine();
-        System.out.print("Digite a sua idade: ");
-        age = sc.nextLine();
-        System.out.print("Digite o seu peso: ");
-        weight = sc.nextLine();
-        System.out.print("Digite a sua altura: ");
-        height = sc.nextLine();
-        // Exibe os resultados
-        System.out.printf("Name: %s\nAge: %s\nWeight: %s\nHeight: %s\n", name, age, weight, height);
-        // Fecha a conexão com o objeto
-        sc.close();
+        // Limpando o buffer do teclado
+        sc.nextLine();
+
+        // Recebe valores do tipo string
+        str1 = sc.nextLine();
+        str2 = sc.nextLine();
+        str3 = sc.nextLine();
+
+        System.out.println(num);
+        System.out.println(str1);
+        System.out.println(str2);
+        System.out.println(str3);
     }
 }

@@ -110,5 +110,63 @@ Todos os valores digitados e armazenados nas variáveis são do tipo String.
 A diferença entre os métodos next() e nextLine() é que o método next() lê apenas a primeira coisa digitada no 
 terminal, ja o método nextLine() lê tudo que for digitado.
 
+NOTA: Em java temos um problema relacionado a entrada de dados como é o caso em C, quando usamos um método diferente 
+do nextLine(), temos que o caractere de quebra de linha `\n` irá ser armazenado na variável seguinte, ou seja, na 
+seguinte entrada de dados, vejamos:
+
+```java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        int num;
+        String str1, str2, str3;
+
+        Scanner sc = new Scanner(System.in);
+        
+        // Recebe um valor inteiro
+        num = sc.nextInt();
+        
+        // Recebe valores do tipo string
+        str1 = sc.nextLine();
+        str2 = sc.nextLine();
+        str3 = sc.nextLine();
+    }
+}
+```
+
+Ou seja, quando digitarmos o primeiro valor que é um inteiro temos que a segunda variável irá armazenar o caractere 
+de quebra de linha `\n`, isso acaba gerando um problema onde a variável str1 não irá armazenar o valor desejado. 
+Para resolver isso basta `limpar o buffer do teclado` usando o método sc.nextLine(). Vejamos:
+
+```java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        int num;
+        String str1, str2, str3;
+
+        Scanner sc = new Scanner(System.in);
+        
+        // Recebe um valor inteiro
+        num = sc.nextInt();
+        
+        // Limpando o buffer do teclado
+        sc.nextLine();
+        
+        // Recebe valores do tipo string
+        str1 = sc.nextLine();
+        str2 = sc.nextLine();
+        str3 = sc.nextLine();
+
+        System.out.println(num);
+        System.out.println(str1);
+        System.out.println(str2);
+        System.out.println(str3);
+    }
+}
+```
+
 
 [Voltar](../README.md)
