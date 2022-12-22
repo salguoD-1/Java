@@ -32,7 +32,8 @@ public class Main {
 }
 ```
 
-No exemplo acima usamos o método .next() que lê algo digitado no terminal. Por fim fechamos a conexão com o objeto.
+No exemplo acima usamos o método .next() que lê a primeira coisa digitada no terminal. Por fim fechamos a conexão com o 
+objeto.
 
 Java disponibiliza alguns métodos para leitura, vejamos:
 
@@ -74,6 +75,40 @@ public class Main {
 
 NOTA: O tipo double pega a assinatura do sistema, ou seja, se seu sistema está em PT-BR isso significa dizer que ele 
 vai receber dados usando vírgula, caso contrário ele recebe usando ponto. 
+
+Podemos usar o método .nextLine() que armazena um valor como string, vejamos:
+
+```java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        // Cria um objeto do tipo Scanner
+        Scanner sc = new Scanner(System.in);
+
+        String name, age, weight, height;
+
+        // O método .nextLine() lê uma string
+        System.out.print("Digite o seu nome: ");
+        name = sc.nextLine();
+        System.out.print("Digite a sua idade: ");
+        age = sc.nextLine();
+        System.out.print("Digite o seu peso: ");
+        weight = sc.nextLine();
+        System.out.print("Digite a sua altura: ");
+        height = sc.nextLine();
+        // Exibe os resultados
+        System.out.printf("Name: %s\nAge: %s\nWeight: %s\nHeight: %s\n", name, age, weight, height);
+        // Fecha a conexão com o objeto
+        sc.close();
+    }
+}
+```
+
+Todos os valores digitados e armazenados nas variáveis são do tipo String.
+
+A diferença entre os métodos next() e nextLine() é que o método next() lê apenas a primeira coisa digitada no 
+terminal, ja o método nextLine() lê tudo que for digitado.
 
 
 [Voltar](../README.md)
