@@ -1,26 +1,14 @@
-import java.util.Scanner;
+
+
 
 public class Main {
     public static void main(String[] args) {
-        int num;
-        String str1, str2, str3;
+        double x = 3.0;
+        double y = 4.0;
+        double z = -5.0;
 
-        Scanner sc = new Scanner(System.in);
-
-        // Recebe um valor inteiro
-        num = sc.nextInt();
-
-        // Limpando o buffer do teclado
-        sc.nextLine();
-
-        // Recebe valores do tipo string
-        str1 = sc.nextLine();
-        str2 = sc.nextLine();
-        str3 = sc.nextLine();
-
-        System.out.println(num);
-        System.out.println(str1);
-        System.out.println(str2);
-        System.out.println(str3);
+        System.out.println(Math.pow(x, 2));
+        System.out.println(Math.sqrt(y));
+        System.out.println(Math.pow(z, 2));
     }
 }

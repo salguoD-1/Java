@@ -167,6 +167,25 @@ public class Main {
     }
 }
 ```
+## Funções Matemáticas
+
+Usamos a API Math do java, vejamos algumas funções matemáticas:
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        double x = 3.0;
+        double y = 4.0;
+        double z = -5.0;
+
+        System.out.printf("O quadrado de %f é: %f\n", Math.pow(x, 2));
+        System.out.printf("A raiz quadrada de %f é: %f\n", Math.sqrt(y));
+        System.out.printf("O valor absoluto de %f é: %f\n", Math.abs(z));
+    }
+}
+```
+## Outros tópicos básicos sobre Java
+
 
 
 [Voltar](../README.md)
