@@ -186,6 +186,74 @@ public class Main {
 ```
 ## Outros tópicos básicos sobre Java
 
+### Conveções para nomes
 
+Em java, nós usamos o padrão camelCase para declarar:
+- pacotes
+- atributos
+- métodos
+- variáveis e parâmetros
 
+Já para o caso de classes, nós usamos o padrão PascalCase:
+```java
+class NomeDaClasse {
+    // faz algo
+}
+```
+
+Vejamos um exemplo de código que contém esses dois padrões:
+
+```java
+// Pacote
+package entities;
+
+// Classe
+public class Account {
+    // Variáveis
+    private String holder;
+    private Double balance;
+    
+    // Métodos
+    public Account(String holder, Double balance) {
+        this.holder = holder;
+        this.balance = balance;
+    }
+    
+    public String getHolder() {
+        return holder;
+    }
+    
+    public void deposit(Double amount) {
+        balance += amount;
+    }
+    
+    public void withdraw(Double amount) {
+        balance -= amount;
+    }
+}
+```
+
+### Funções interessantes para Strings
+
+Java disponibiliza algumas funções bem interessantes para o manuseio de strings:
+
+- Formatar: toLowerCase(), toUpperCase() e trim()
+- Recortar: substring(inicio), substring(inicio, fim)
+- Substituir: Replace(char, char), Replace(string, string)
+- Buscar: IndexOf, LastIndexOf
+- str.Split("")
+
+Vejamos alguns exemplos
+
+```java
+package course;
+
+public class Program {
+    public static void main(String[] args) {
+        String original = "OI, EU ESTOU EM MAIÚSCULO!";
+        // Exibe o resultado convertido para minúsculo
+        System.out.println(original.toLowerCase());
+    }
+}
+```
 [Voltar](../README.md)
