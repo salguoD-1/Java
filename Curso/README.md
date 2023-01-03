@@ -1,6 +1,7 @@
 # Entrada de dados em Java
 
 ## Classe Scanner
+
 Para realizar a entrada de dados(input) é necessário criar um objeto(instância) do tipo Scanner, vejamos:
 
 ```java
@@ -14,8 +15,8 @@ public class Main {
 }
 ```
 
-Note que criamos uma instância(objeto) da classe Scanner e passamos System.in como argumento, isso significa dizer 
-que queremos a entrada de dados. Além disso, note que importamos a API java.util.Scanner para poder usar a classs 
+Note que criamos uma instância(objeto) da classe Scanner e passamos System.in como argumento, isso significa dizer
+que queremos a entrada de dados. Além disso, note que importamos a API java.util.Scanner para poder usar a classs
 Scanner. Por fim, usamos o método .close() para "desalocar" o uso do objeto.
 
 ```java
@@ -32,7 +33,7 @@ public class Main {
 }
 ```
 
-No exemplo acima usamos o método .next() que lê a primeira coisa digitada no terminal. Por fim fechamos a conexão com o 
+No exemplo acima usamos o método .next() que lê a primeira coisa digitada no terminal. Por fim fechamos a conexão com o
 objeto.
 
 Java disponibiliza alguns métodos para leitura, vejamos:
@@ -73,8 +74,8 @@ public class Main {
 }
 ```
 
-NOTA: O tipo double pega a assinatura do sistema, ou seja, se seu sistema está em PT-BR isso significa dizer que ele 
-vai receber dados usando vírgula, caso contrário ele recebe usando ponto. 
+NOTA: O tipo double pega a assinatura do sistema, ou seja, se seu sistema está em PT-BR isso significa dizer que ele
+vai receber dados usando vírgula, caso contrário ele recebe usando ponto.
 
 Podemos usar o método .nextLine() que armazena um valor como string, vejamos:
 
@@ -107,11 +108,11 @@ public class Main {
 
 Todos os valores digitados e armazenados nas variáveis são do tipo String.
 
-A diferença entre os métodos next() e nextLine() é que o método next() lê apenas a primeira coisa digitada no 
+A diferença entre os métodos next() e nextLine() é que o método next() lê apenas a primeira coisa digitada no
 terminal, ja o método nextLine() lê tudo que for digitado.
 
-NOTA: Em java temos um problema relacionado a entrada de dados como é o caso em C, quando usamos um método diferente 
-do nextLine(), temos que o caractere de quebra de linha `\n` irá ser armazenado na variável seguinte, ou seja, na 
+NOTA: Em java temos um problema relacionado a entrada de dados como é o caso em C, quando usamos um método diferente
+do nextLine(), temos que o caractere de quebra de linha `\n` irá ser armazenado na variável seguinte, ou seja, na
 seguinte entrada de dados, vejamos:
 
 ```java
@@ -123,10 +124,10 @@ public class Main {
         String str1, str2, str3;
 
         Scanner sc = new Scanner(System.in);
-        
+
         // Recebe um valor inteiro
         num = sc.nextInt();
-        
+
         // Recebe valores do tipo string
         str1 = sc.nextLine();
         str2 = sc.nextLine();
@@ -135,8 +136,8 @@ public class Main {
 }
 ```
 
-Ou seja, quando digitarmos o primeiro valor que é um inteiro temos que a segunda variável irá armazenar o caractere 
-de quebra de linha `\n`, isso acaba gerando um problema onde a variável str1 não irá armazenar o valor desejado. 
+Ou seja, quando digitarmos o primeiro valor que é um inteiro temos que a segunda variável irá armazenar o caractere
+de quebra de linha `\n`, isso acaba gerando um problema onde a variável str1 não irá armazenar o valor desejado.
 Para resolver isso basta `limpar o buffer do teclado` usando o método sc.nextLine(). Vejamos:
 
 ```java
@@ -148,13 +149,13 @@ public class Main {
         String str1, str2, str3;
 
         Scanner sc = new Scanner(System.in);
-        
+
         // Recebe um valor inteiro
         num = sc.nextInt();
-        
+
         // Limpando o buffer do teclado
         sc.nextLine();
-        
+
         // Recebe valores do tipo string
         str1 = sc.nextLine();
         str2 = sc.nextLine();
@@ -167,6 +168,7 @@ public class Main {
     }
 }
 ```
+
 ## Funções Matemáticas
 
 Usamos a API Math do java, vejamos algumas funções matemáticas:
@@ -184,17 +186,20 @@ public class Main {
     }
 }
 ```
+
 ## Outros tópicos básicos sobre Java
 
 ### Conveções para nomes
 
 Em java, nós usamos o padrão camelCase para declarar:
+
 - pacotes
 - atributos
 - métodos
 - variáveis e parâmetros
 
 Já para o caso de classes, nós usamos o padrão PascalCase:
+
 ```java
 class NomeDaClasse {
     // faz algo
@@ -212,21 +217,21 @@ public class Account {
     // Variáveis
     private String holder;
     private Double balance;
-    
+
     // Métodos
     public Account(String holder, Double balance) {
         this.holder = holder;
         this.balance = balance;
     }
-    
+
     public String getHolder() {
         return holder;
     }
-    
+
     public void deposit(Double amount) {
         balance += amount;
     }
-    
+
     public void withdraw(Double amount) {
         balance -= amount;
     }
@@ -348,10 +353,12 @@ public class Program {
 ## Classes
 
 Classes são um `tipo estruturado` que pode conter **membros:**
+
 - Atributos(dados / campos)
 - Métodos (funções / operações)
 
 Além disso, a `classe também pode prover muitos outros recursos, tais como:
+
 - Construtores
 - Sobrecarga
 - Encapsuulamento
@@ -359,6 +366,7 @@ Além disso, a `classe também pode prover muitos outros recursos, tais como:
 - Polimorfismo
 
 Exemplos:
+
 - `Entidades: Produto, Cliente, Triangulo`
 - `Serviços: ProdutoService, ClienteService, EmailService, StorageService`
 - `Controladores: ProdutoController, ClienteController`
@@ -367,7 +375,7 @@ Exemplos:
 
 ### Usando classes e atributos para representar uma entidade chamada triângulo
 
-Anteriormente resolvemos uma questão para calcular qual dos triângulos era maior, mas fizemos isso de uma forma que 
+Anteriormente resolvemos uma questão para calcular qual dos triângulos era maior, mas fizemos isso de uma forma que
 não utilizamos "classes", vejamos agora a solução usando uma classe chamada Triangle:
 
 ```java
@@ -382,6 +390,7 @@ public class Triangle {
 ```
 
 - Classe Program é o `core` da nossa aplicação
+
 ```java
 package application;
 // Importamos o pacote entities e a classe que queremos usar
@@ -438,5 +447,19 @@ public class Program {
     }
 }
 ```
+
+Note que criamos ~~doi~~s objetos(duas cópias/instâncias) da classe Triangle e em seguida, usamos a palavra reservada
+ǹew`para instanciar esses objetos, por fim acessamos as duas classes usando a notação dot(.) e atribuimos seus
+respectivos valores.
+
+## Memória: Stack e Heap
+
+**As variáveis estáticas, como double areaX, areaY, pX, pY são alocadas na memória Stack, já os objetos(instâncias)
+são alocadas na memória Heap. No entanto, os objetos instânciados possuem um endereço de memória que fica salvo na
+memória Stack, porém esse endereço de memória apenas aponta para o endereço de memória na memória Heap.**
+
+![](images/heap-stack.png)
+
+Representamos esse "apontamento de memória" usando a seta azul na imagem acima.
 
 [Voltar](../README.md)
