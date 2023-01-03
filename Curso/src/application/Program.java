@@ -15,7 +15,7 @@ public class Program {
         x = new Triangle();
         y = new Triangle();
 
-        double areaX, areaY, pX, pY;
+        double areaX, areaY;
         // Criamos um objeto(instância) da classe Scanner
         Scanner sc = new Scanner(System.in);
         // Solicitamos os lados do triângulo X
@@ -29,13 +29,9 @@ public class Program {
         y.b = sc.nextDouble();
         y.c = sc.nextDouble();
 
-        // Calcula o valor de p para X e Y
-        pX = (x.a + x.b + x.c) / 2;
-        pY = (y.a + y.b + y.c) / 2;
-
-        // Calcula a área de cada triângulo
-        areaX = Math.sqrt(pX * (pX - x.a) * (pX - x.b) * (pX - x.c));
-        areaY = Math.sqrt(pY * (pY - y.a) * (pY - y.b) * (pY - y.c));
+        // Chamamos o método area da classe Triangle
+        areaX = x.area();
+        areaY = y.area();
 
         // Exibe o resultado da area de cada triângulo
         System.out.printf("Area do triângulo x é: %.1f%n", areaX);

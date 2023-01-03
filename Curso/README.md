@@ -462,4 +462,103 @@ memória Stack, porém esse endereço de memória apenas aponta para o endereço
 
 Representamos esse "apontamento de memória" usando a seta azul na imagem acima.
 
+## Criando um método para obtermos os benefícios de reaproveitamento e delegação
+
+Note que no nosso exemplo anterior, nós podemos simplificar o cálculo da área de um triângulo usando um método na 
+classe Triangle, dessa forma nós podemos reusar esse método quantas vezes quisermos.
+
+**Classe Triangle com a implementação do método area()**
+```java
+package entities; // O triângulo é uma entidade
+
+public class Triangle {
+    // Atributos que podem ser usados por outras classes
+    public double a;
+    public double b;
+    public double c;
+
+    // Método que cálcula a área de um triângulo
+    public double area() {
+        // Estamos trabalhando com os atributos da classe
+        double p = (a + b + c) / 2.0;
+        // Retorna o cálculo da área
+        return Math.sqrt(p * (p - a) * (p - b) * (p - c));
+    }
+}
+```
+**Classe Program com o método area()**
+```java
+package application;
+// Importamos o pacote entities e a classe que queremos usar
+import entities.Triangle;
+
+import java.util.Scanner;
+// Exemplo de problema "sem" utilizar POO
+public class Program {
+    public static void main(String[] args) {
+        // Declaramos 6 variáveis do tipo double
+//        double x.a, x.b, x.c, y.a, y.b, y.c;
+
+        // Duas variáveis x e y do tipo Triangle
+        Triangle x, y;
+        // Criando objetos(instâncias) da classe Triangle
+        x = new Triangle();
+        y = new Triangle();
+
+        double areaX, areaY;
+        // Criamos um objeto(instância) da classe Scanner
+        Scanner sc = new Scanner(System.in);
+        // Solicitamos os lados do triângulo X
+        System.out.println("Enter the measures of triangle X: ");
+        x.a = sc.nextDouble();
+        x.b = sc.nextDouble();
+        x.c = sc.nextDouble();
+        // Solicitamos os lados do triângulo Y
+        System.out.println("Enter the measure of triangle Y: ");
+        y.a = sc.nextDouble();
+        y.b = sc.nextDouble();
+        y.c = sc.nextDouble();
+
+        // Chamamos o método area da classe Triangle
+        areaX = x.area();
+        areaY = y.area();
+
+        // Exibe o resultado da area de cada triângulo
+        System.out.printf("Area do triângulo x é: %.1f%n", areaX);
+        System.out.printf("Area do triângulo y é: %.1f%n", areaY);
+
+        // Compara as áreas e retorna algo
+        if (areaX > areaY) {
+            System.out.println("Area do triângulo X é maior!");
+        } else {
+            System.out.println("Area do triângulo Y é maior!");
+        }
+
+        // Encerra o uso da classe Scanner
+        sc.close();
+    }
+}
+```
+
+No exemplo acima note que usamos o método area e os atributos da classe Triangle, ou seja, não foi necessário passar 
+os valores por parâmetro visto que os atributos estão presentes na classe.
+
+### Beneficios do uso do método area() da classe Triangle:
+1. Reaproveitamento de código pois elimina o código repetido.
+2. Delegação de responsabilidades: Basicamente significa dizer quem deve ser responsável por saber como calcular a 
+   área de um triângulo é o próprio triângulo(A classe Triangle). A lógica da área não deve estar em outro lugar.
+
+**Estrutura completa da nossa classe Triangle**
+![](images/estrutura.png)
+
+## Projeto da classe (UML)
+
+O UML é um diagrama muito utilizado para representar a estrutura do nosso código, no exemplo abaixo representamos a 
+classe Triangle que contém seus três atributos e o seu método area().
+
+![](images/UML.png)
+
+Note que primeiro temos o nome da classe seguido dos atributos e por fim os métodos da classe. Veremos mais sobre 
+UML no decorrer do aprendizado.
+
 [Voltar](../README.md)
