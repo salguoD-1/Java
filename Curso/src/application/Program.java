@@ -1,32 +1,41 @@
 package application;
+// Importamos o pacote entities e a classe que queremos usar
+import entities.Triangle;
 
 import java.util.Scanner;
 // Exemplo de problema "sem" utilizar POO
 public class Program {
     public static void main(String[] args) {
         // Declaramos 6 variáveis do tipo double
-        double xA, xB, xC, yA, yB, yC;
+//        double x.a, x.b, x.c, y.a, y.b, y.c;
+
+        // Duas variáveis x e y do tipo Triangle
+        Triangle x, y;
+        // Criando objetos(instâncias) da classe Triangle
+        x = new Triangle();
+        y = new Triangle();
+
         double areaX, areaY, pX, pY;
         // Criamos um objeto(instância) da classe Scanner
         Scanner sc = new Scanner(System.in);
         // Solicitamos os lados do triângulo X
         System.out.println("Enter the measures of triangle X: ");
-        xA = sc.nextDouble();
-        xB = sc.nextDouble();
-        xC = sc.nextDouble();
+        x.a = sc.nextDouble();
+        x.b = sc.nextDouble();
+        x.c = sc.nextDouble();
         // Solicitamos os lados do triângulo Y
         System.out.println("Enter the measure of triangle Y: ");
-        yA = sc.nextDouble();
-        yB = sc.nextDouble();
-        yC = sc.nextDouble();
+        y.a = sc.nextDouble();
+        y.b = sc.nextDouble();
+        y.c = sc.nextDouble();
 
         // Calcula o valor de p para X e Y
-        pX = (xA + xB + xC) / 2;
-        pY = (yA + yB + yC) / 2;
+        pX = (x.a + x.b + x.c) / 2;
+        pY = (y.a + y.b + y.c) / 2;
 
         // Calcula a área de cada triângulo
-        areaX = Math.sqrt(pX * (pX - xA) * (pX - xB) * (pX - xC));
-        areaY = Math.sqrt(pY * (pY - yA) * (pY - yB) * (pY - yC));
+        areaX = Math.sqrt(pX * (pX - x.a) * (pX - x.b) * (pX - x.c));
+        areaY = Math.sqrt(pY * (pY - y.a) * (pY - y.b) * (pY - y.c));
 
         // Exibe o resultado da area de cada triângulo
         System.out.printf("Area do triângulo x é: %.1f%n", areaX);
