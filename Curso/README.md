@@ -394,57 +394,57 @@ public class Triangle {
 ```java
 package application;
 // Importamos o pacote entities e a classe que queremos usar
-import entities.Triangle;
 
 import java.util.Scanner;
+
 // Exemplo de problema "sem" utilizar POO
 public class Program {
-    public static void main(String[] args) {
-        // Declaramos 6 variáveis do tipo double
+   public static void main(String[] args) {
+      // Declaramos 6 variáveis do tipo double
 //        double x.a, x.b, x.c, y.a, y.b, y.c;
 
-        // Duas variáveis x e y do tipo Triangle
-        Triangle x, y;
-        // Criando objetos(instâncias) da classe Triangle
-        x = new Triangle();
-        y = new Triangle();
+      // Duas variáveis x e y do tipo Triangle
+      Triangle x, y;
+      // Criando objetos(instâncias) da classe Triangle
+      x = new Triangle();
+      y = new Triangle();
 
-        double areaX, areaY, pX, pY;
-        // Criamos um objeto(instância) da classe Scanner
-        Scanner sc = new Scanner(System.in);
-        // Solicitamos os lados do triângulo X
-        System.out.println("Enter the measures of triangle X: ");
-        x.a = sc.nextDouble();
-        x.b = sc.nextDouble();
-        x.c = sc.nextDouble();
-        // Solicitamos os lados do triângulo Y
-        System.out.println("Enter the measure of triangle Y: ");
-        y.a = sc.nextDouble();
-        y.b = sc.nextDouble();
-        y.c = sc.nextDouble();
+      double areaX, areaY, pX, pY;
+      // Criamos um objeto(instância) da classe Scanner
+      Scanner sc = new Scanner(System.in);
+      // Solicitamos os lados do triângulo X
+      System.out.println("Enter the measures of triangle X: ");
+      x.a = sc.nextDouble();
+      x.b = sc.nextDouble();
+      x.c = sc.nextDouble();
+      // Solicitamos os lados do triângulo Y
+      System.out.println("Enter the measure of triangle Y: ");
+      y.a = sc.nextDouble();
+      y.b = sc.nextDouble();
+      y.c = sc.nextDouble();
 
-        // Calcula o valor de p para X e Y
-        pX = (x.a + x.b + x.c) / 2;
-        pY = (y.a + y.b + y.c) / 2;
+      // Calcula o valor de p para X e Y
+      pX = (x.a + x.b + x.c) / 2;
+      pY = (y.a + y.b + y.c) / 2;
 
-        // Calcula a área de cada triângulo
-        areaX = Math.sqrt(pX * (pX - x.a) * (pX - x.b) * (pX - x.c));
-        areaY = Math.sqrt(pY * (pY - y.a) * (pY - y.b) * (pY - y.c));
+      // Calcula a área de cada triângulo
+      areaX = Math.sqrt(pX * (pX - x.a) * (pX - x.b) * (pX - x.c));
+      areaY = Math.sqrt(pY * (pY - y.a) * (pY - y.b) * (pY - y.c));
 
-        // Exibe o resultado da area de cada triângulo
-        System.out.printf("Area do triângulo x é: %.1f%n", areaX);
-        System.out.printf("Area do triângulo y é: %.1f%n", areaY);
+      // Exibe o resultado da area de cada triângulo
+      System.out.printf("Area do triângulo x é: %.1f%n", areaX);
+      System.out.printf("Area do triângulo y é: %.1f%n", areaY);
 
-        // Compara as áreas e retorna algo
-        if (areaX > areaY) {
-            System.out.println("Area do triângulo X é maior!");
-        } else {
-            System.out.println("Area do triângulo Y é maior!");
-        }
+      // Compara as áreas e retorna algo
+      if (areaX > areaY) {
+         System.out.println("Area do triângulo X é maior!");
+      } else {
+         System.out.println("Area do triângulo Y é maior!");
+      }
 
-        // Encerra o uso da classe Scanner
-        sc.close();
-    }
+      // Encerra o uso da classe Scanner
+      sc.close();
+   }
 }
 ```
 
@@ -487,56 +487,57 @@ public class Triangle {
 }
 ```
 **Classe Program com o método area()**
+
 ```java
 package application;
 // Importamos o pacote entities e a classe que queremos usar
-import entities.Triangle;
 
 import java.util.Scanner;
+
 // Exemplo de problema "sem" utilizar POO
 public class Program {
-    public static void main(String[] args) {
-        // Declaramos 6 variáveis do tipo double
+   public static void main(String[] args) {
+      // Declaramos 6 variáveis do tipo double
 //        double x.a, x.b, x.c, y.a, y.b, y.c;
 
-        // Duas variáveis x e y do tipo Triangle
-        Triangle x, y;
-        // Criando objetos(instâncias) da classe Triangle
-        x = new Triangle();
-        y = new Triangle();
+      // Duas variáveis x e y do tipo Triangle
+      Triangle x, y;
+      // Criando objetos(instâncias) da classe Triangle
+      x = new Triangle();
+      y = new Triangle();
 
-        double areaX, areaY;
-        // Criamos um objeto(instância) da classe Scanner
-        Scanner sc = new Scanner(System.in);
-        // Solicitamos os lados do triângulo X
-        System.out.println("Enter the measures of triangle X: ");
-        x.a = sc.nextDouble();
-        x.b = sc.nextDouble();
-        x.c = sc.nextDouble();
-        // Solicitamos os lados do triângulo Y
-        System.out.println("Enter the measure of triangle Y: ");
-        y.a = sc.nextDouble();
-        y.b = sc.nextDouble();
-        y.c = sc.nextDouble();
+      double areaX, areaY;
+      // Criamos um objeto(instância) da classe Scanner
+      Scanner sc = new Scanner(System.in);
+      // Solicitamos os lados do triângulo X
+      System.out.println("Enter the measures of triangle X: ");
+      x.a = sc.nextDouble();
+      x.b = sc.nextDouble();
+      x.c = sc.nextDouble();
+      // Solicitamos os lados do triângulo Y
+      System.out.println("Enter the measure of triangle Y: ");
+      y.a = sc.nextDouble();
+      y.b = sc.nextDouble();
+      y.c = sc.nextDouble();
 
-        // Chamamos o método area da classe Triangle
-        areaX = x.area();
-        areaY = y.area();
+      // Chamamos o método area da classe Triangle
+      areaX = x.area();
+      areaY = y.area();
 
-        // Exibe o resultado da area de cada triângulo
-        System.out.printf("Area do triângulo x é: %.1f%n", areaX);
-        System.out.printf("Area do triângulo y é: %.1f%n", areaY);
+      // Exibe o resultado da area de cada triângulo
+      System.out.printf("Area do triângulo x é: %.1f%n", areaX);
+      System.out.printf("Area do triângulo y é: %.1f%n", areaY);
 
-        // Compara as áreas e retorna algo
-        if (areaX > areaY) {
-            System.out.println("Area do triângulo X é maior!");
-        } else {
-            System.out.println("Area do triângulo Y é maior!");
-        }
+      // Compara as áreas e retorna algo
+      if (areaX > areaY) {
+         System.out.println("Area do triângulo X é maior!");
+      } else {
+         System.out.println("Area do triângulo Y é maior!");
+      }
 
-        // Encerra o uso da classe Scanner
-        sc.close();
-    }
+      // Encerra o uso da classe Scanner
+      sc.close();
+   }
 }
 ```
 
@@ -561,4 +562,81 @@ classe Triangle que contém seus três atributos e o seu método area().
 Note que primeiro temos o nome da classe seguido dos atributos e por fim os métodos da classe. Veremos mais sobre 
 UML no decorrer do aprendizado.
 
+## Projetinho básico
+Detalhes do projeto
+![](images/UML-Project.png)
+Input de dados do projeto
+![](images/Output-Example.png)
+
+Product é uma entidade, logo fazemos uso do package entities seguido da classe Product que contém a lógica do programa
+
+```java
+package entities;
+public class Product {
+    public String name;
+    public double price;
+    public int quantity;
+
+    public double totalValueInStock() {
+        return quantity * price;
+    }
+
+    public void addProducts(int quantity) {
+        // this = faz autoreferenciamento a variável quantity da classe Product
+        this.quantity += quantity;
+    }
+
+    public void removeProducts(int quantity) {
+        this.quantity -= quantity;
+    }
+
+    public String toString() {
+        return name + ", " + "$ " + String.format("%.2f", price) + ", " + quantity + " units, " + "$ " + String.format("%.2f", totalValueInStock());
+    }
+}
+```
+Por fim criamos a classe Program que é responsável pela execução do nosso programa, ela faz parte do package 
+application:
+
+```java
+package application;
+
+import entities.Product;
+
+import java.util.Scanner;
+
+public class Program {
+    public static void main(String[] args) {
+        // Criamos dois objetos, sc e product
+        Scanner sc = new Scanner(System.in);
+        Product product = new Product();
+        int productQuantity;
+
+        // Solicitação de dados
+        System.out.println("Enter product Data: ");
+        System.out.print("Name: ");
+        product.name = sc.next();
+        System.out.print("Price: ");
+        product.price = sc.nextDouble();
+        System.out.print("Quantity in stock: ");
+        product.quantity = sc.nextInt();
+
+        System.out.printf("Product data: %s%n", product);
+
+        System.out.print("Enter the number of products to be added in stock: ");
+        productQuantity = sc.nextInt();
+        product.addProducts(productQuantity);
+
+        System.out.printf("Update data: %s%n", product);
+        System.out.print("Enter the number of products to be removed from stock: ");
+        productQuantity = sc.nextInt();
+        product.removeProducts(productQuantity);
+
+        System.out.printf("Update data: %s%n", product);
+    }
+}
+```
+
+Note que usamos a palavra-chave this, this basicamente faz um autoreferenciamento a uma propriedade, utilizamos this 
+para evitar ambiguidade com o nome do parâmetro.
 [Voltar](../README.md)
