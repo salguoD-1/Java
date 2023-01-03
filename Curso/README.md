@@ -562,7 +562,7 @@ classe Triangle que contém seus três atributos e o seu método area().
 Note que primeiro temos o nome da classe seguido dos atributos e por fim os métodos da classe. Veremos mais sobre 
 UML no decorrer do aprendizado.
 
-## Projetinho básico
+# Projetinho básico
 Detalhes do projeto
 ![](images/UML-Project.png)
 Input de dados do projeto
@@ -638,5 +638,7 @@ public class Program {
 ```
 
 Note que usamos a palavra-chave this, this basicamente faz um autoreferenciamento a uma propriedade, utilizamos this 
-para evitar ambiguidade com o nome do parâmetro.
+para evitar ambiguidade com o nome do parâmetro. Por fim, note também que utilizamos o método toString() para exibir 
+um resultado mais formato, no entanto, não chamamos o método toString() diretamente, passamos apenas product que é o 
+objeto. Isso acontece porque o java já reconhece automaticamente o que desejamos exibir, nesse caso uma string.
 [Voltar](../README.md)
