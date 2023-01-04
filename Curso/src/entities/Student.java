@@ -7,14 +7,12 @@ public class Student {
     public double notaTres;
 
     public double finalGrade() {
-        double sum = notaUm + notaDois + notaTres;
-        return sum;
+        return notaUm + notaDois + notaTres;
     }
     public String passOrFailed() {
-        double sum = notaUm + notaDois + notaTres;
-        if (sum < 60) {
+        if (finalGrade() < 60) {
             // Retorna uma string formatada.
-            return String.format("FAILED%nMISSING %.2f POINTS", 60 - sum);
+            return String.format("FAILED%nMISSING %.2f POINTS", 60 - finalGrade());
         } else {
             return "PASS";
         }

@@ -19,15 +19,15 @@ public class ProgramEmployee {
         System.out.print("Tax: ");
         emp.tax = sc.nextDouble();
 
-        System.out.printf("Employee: %s, $ %.2f\n", emp.name, emp.netSalary());
+        System.out.printf("Employee: %s%n", emp);
 
         System.out.print("Which percentage to increase salary? ");
         // Armazena a porcentagem que o salário irá aumentar
         percentage = sc.nextDouble();
         // Chamamos o método increaseSalary passando percentage como argumento
-        emp.increaseSalary(percentage / 100);
+        emp.increaseSalary(percentage);
 
-        System.out.printf("Update data: %s, $ %.2f", emp.name, emp.grossSalary);
+        System.out.printf("Update data: %s%n", emp);
 
     }
 }

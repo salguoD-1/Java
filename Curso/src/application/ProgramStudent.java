@@ -19,5 +19,6 @@ public class ProgramStudent {
 
         System.out.printf("FINAL GRADE = %.2f%n", student.finalGrade());
         System.out.printf("%s%n", student.passOrFailed());
+        sc.close();
     }
 }
