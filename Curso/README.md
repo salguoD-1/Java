@@ -370,7 +370,7 @@ Exemplos:
 - `Entidades: Produto, Cliente, Triangulo`
 - `Serviços: ProdutoService, ClienteService, EmailService, StorageService`
 - `Controladores: ProdutoController, ClienteController`
-- `Utilitários: Calcuuladora, Compactador`
+- `Utilitários: Calculadora, Compactador`
 - `Outros (views, repositórios, gerenciadores, etc.)`
 
 ### Usando classes e atributos para representar uma entidade chamada triângulo
@@ -641,5 +641,220 @@ Note que usamos a palavra-chave this, this basicamente faz um autoreferenciament
 para evitar ambiguidade com o nome do parâmetro. Por fim, note também que utilizamos o método toString() para exibir 
 um resultado mais formato, no entanto, não chamamos o método toString() diretamente, passamos apenas product que é o 
 objeto. Isso acontece porque o java já reconhece automaticamente o que desejamos exibir, nesse caso uma string.
+
+## Exercício 1
+
+Fazer um programa para ler os valores da largura e altura de um retângulo. Em seguida, mostrar na tela o valor de sua área, perímetro e diagonal. Usar uma classe como mostrado no projeto abaixo.
+
+![](images/exercicio-uml.PNG)
+
+Output:
+Enter rectangle width and height:
+3.00
+4.00
+AREA = 12.00
+PERIMETER = 14.00
+DIAGONAL = 5.00
+
+### Classe Rectangle
+```java
+package entities;
+
+public class Rectangle {
+    public double width;
+    public double height;
+
+    public double area() {
+        // Área de um retângulo = base x altura (ou comprimento x largura)
+        return width * height;
+    }
+
+    public double perimeter() {
+        return 2 * (width + height);
+    }
+
+    public double diagonal() {
+        return Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2));
+    }
+}
+```
+### Classe ProgramRectangle
+```java
+package application;
+
+import entities.Rectangle;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+public class ProgramRectangle {
+    public static void main(String[] args) {
+        // Criamos duas instâncias de duas classes, Locale e Scanner
+        Locale.setDefault(new Locale("en", "US"));
+        Scanner sc = new Scanner(System.in);
+
+        // Instanciamos a classe Rectangle que contém toda a lógica do nosso programa
+        Rectangle rectangle = new Rectangle();
+
+        System.out.println("Enter the rectangle width and height: ");
+        rectangle.width = sc.nextDouble();
+        rectangle.height = sc.nextDouble();
+
+        System.out.printf("AREA = %.2f\nPERIMETER = %.2f\nDIAGONAL = %.2f\n", rectangle.area(), rectangle.perimeter(), rectangle.diagonal());
+        sc.close();
+    }
+}
+```
+
+### Exercício 2
+Fazer um programa para ler os dados de um funcionário (nome, salário bruto e imposto). Em seguida, mostrar os dados do funcionário (nome e salário líquido). Em seguida, aumentar o salário do funcionário com base em uma porcentagem dada (somente o salário bruto é afetado pela porcentagem) e mostrar novamente os dados do funcionário. Use a classe projetada abaixo:
+
+![](images/exercicio2-uml.PNG)
+
+Output:
+Name: Joao Silva
+Gross salary: 6000.00
+Tax: 1000.00
+
+Employee: Joao Silva, $ 5000.00
+
+Which percentage to increase salary? 10.0
+
+Update data: Joao Silva, $ 5600.00
+
+### Classe Employee
+````java
+package entities;
+
+public class Employee {
+    public String name;
+    public double grossSalary;
+    public double tax;
+
+    public double netSalary() {
+        return grossSalary - tax;
+    }
+
+    public void increaseSalary(double percentage) {
+        grossSalary = (grossSalary * percentage) + (grossSalary - tax);
+    }
+
+}
+````
+
+### Classe ProgramEmployee
+
+````java
+package application;
+
+import entities.Employee;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+public class ProgramEmployee {
+    public static void main(String[] args) {
+        Locale.setDefault(new Locale("en", "US"));
+        Scanner sc = new Scanner(System.in);
+        double percentage;
+        Employee emp = new Employee();
+
+        System.out.print("Name: ");
+        emp.name = sc.nextLine();
+        System.out.print("Gross salary: ");
+        emp.grossSalary = sc.nextDouble();
+        System.out.print("Tax: ");
+        emp.tax = sc.nextDouble();
+
+        System.out.printf("Employee: %s, $ %.2f\n", emp.name, emp.netSalary());
+
+        System.out.print("Which percentage to increase salary? ");
+        // Armazena a porcentagem que o salário irá aumentar
+        percentage = sc.nextDouble();
+        // Chamamos o método increaseSalary passando percentage como argumento
+        emp.increaseSalary(percentage / 100);
+
+        System.out.printf("Update data: %s, $ %.2f", emp.name, emp.grossSalary);
+
+    }
+}
+````
+
+### Exercício 3
+Fazer um programa para ler o nome de um aluno e as três notas que ele obteve nos três trimestres do ano (primeiro trimestre vale 30 e o segundo e terceiro valem 35 cada). Ao final, mostrar qual a nota final do aluno no ano. Dizer também se o aluno está aprovado (PASS) ou não (FAILED) e, em caso negativo, quantos pontos faltam para o aluno obter o mínimo para ser aprovado (que é 60% da nota). Você deve criar uma classe Student para resolver esse problema.
+
+Input 1:
+Alex Green
+27.00
+31.00
+32.00
+
+Input 2:
+Alex Green
+17.00
+20.00
+15.00
+
+Output 1:
+FINAL GRADE = 90.00
+PASS
+
+Output 2:
+FINAL GRADE = 52.00
+FAILED
+MISSING 8.00 POINTS
+
+### Classe Student
+````java
+package entities;
+
+public class Student {
+    public String name;
+    public double notaUm;
+    public double notaDois;
+    public double notaTres;
+
+    public double finalGrade() {
+        double sum = notaUm + notaDois + notaTres;
+        return sum;
+    }
+    public String passOrFailed() {
+        double sum = notaUm + notaDois + notaTres;
+        if (sum < 60) {
+            // Retorna uma string formatada.
+            return String.format("FAILED%nMISSING %.2f POINTS", 60 - sum);
+        } else {
+            return "PASS";
+        }
+    }
+}
+````
+
+### Classe ProgramStudent
+````java
+package application;
+
+import entities.Student;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+public class ProgramStudent {
+    public static void main(String[] args) {
+        Locale.setDefault(new Locale("en", "US"));
+        Scanner sc = new Scanner(System.in);
+
+        Student student = new Student();
+
+        student.name = sc.nextLine();
+        student.notaUm = sc.nextDouble();
+        student.notaDois = sc.nextDouble();
+        student.notaTres = sc.nextDouble();
+
+        System.out.printf("FINAL GRADE = %.2f%n", student.finalGrade());
+        System.out.printf("%s%n", student.passOrFailed());
+    }
+}
+````
 
 [Voltar](../README.md)
