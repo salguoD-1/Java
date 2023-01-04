@@ -2,10 +2,13 @@ package application;
 
 import entities.Product;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Program {
     public static void main(String[] args) {
+        // Permite utilizar ponto no lugar de vírgula.
+        Locale.setDefault(new Locale("en", "US"));
         // Criamos dois objetos, sc e product
         Scanner sc = new Scanner(System.in);
         Product product = new Product();
