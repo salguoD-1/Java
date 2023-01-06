@@ -1062,4 +1062,58 @@ utilizar o nome da classe seguido do nome do membro(atributo/método) estático.
 - Na classe Math nós usamos os método pow e sqrt por exemplo, note que não é necessário criar uma instância da 
   classe Math. Isso deve ao fato da classe Math ser estática, ou seja, podemos acessar diretamente seus membros 
   usando apenas o nome da classe seguido do nome do seu membro.
+
+### Exéricio de fixação
+Faça um programa para ler a cotação do dólar, e depois um valor em dólares a ser comprado por uma pessoa em reais. 
+Informar quantos reais a pessoa vai pagar pelos dólares, considerando ainda que a pessoa terá que pagar 6% de IOF 
+sobre o valor em dólar. Criar uma classe CurrencyConverter para ser responsável pelos cálculos.
+
+Input/Output:
+What is the dollar price: 3.10
+How many dollars will be bought? 200.00
+Amout to pe baid in reais = 657.20
+
+Classe CurrencyConverter
+````java
+package util;
+
+public class CurrencyConverter {
+    // Membro estático pois o resultado só depende do valor passado.
+    public static double currencyConverter(double dolarPrice, double bought) {
+        // 1.06 = 6% de imposto.
+        return dolarPrice * bought * 1.06;
+    }
+}
+````
+
+Classe Program
+````java
+package application;
+
+import util.Calculator;
+import util.CurrencyConverter;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+public class Program {
+    public static void main(String[] args) {
+        // Permite utilizar ponto no lugar de vírgula.
+        Locale.setDefault(new Locale("en", "US"));
+        // Criamos dois objetos, sc e product
+        Scanner sc = new Scanner(System.in);
+
+        double dolarPrice;
+        double dolarBought;
+        System.out.print("What is the dollar price? ");
+        dolarPrice = sc.nextDouble();
+        System.out.print("How many dollars will be bought? ");
+        dolarBought = sc.nextDouble();
+        
+        // Acessamos a classe seguido do método estático passando os dois argumentos.
+        System.out.printf("Amount to be paid in reais = %.2f%n", CurrencyConverter.currencyConverter(dolarPrice, dolarBought));
+    }
+}
+````
+
 [Voltar](../README.md)
