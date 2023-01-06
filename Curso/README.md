@@ -857,4 +857,209 @@ public class ProgramStudent {
 }
 ````
 
+## Membros estáticos
+
+Sabemos que uma classe possui membros, sendo eles:
+- Atributos
+- Métodos
+
+![](images/product-uml.png)
+
+Na imagem acima temos que os atributos são:
+1. Name
+2. Price
+3. Quantity
+
+E os métodos são:
+1. TotalValueInStock()
+2. AddProducts()
+3. RemoveProducts()
+
+### Então, o que são membros estáticos?
+
+- Também chamados membros de classe
+  - Em oposição a membros e instância
+- São membros que fazem sentido independentemente de objetos. Não precisam de objeto para serem chamados. São 
+  chamados a partir do próprio nome da classe.
+- Aplicações comuns:
+  1. Classes utilitárias
+  2. Declaração de constantes
+- Uma classe que possui somente membros estáticos, pode ser uma classe estática também. Esta classe não poderá ser 
+  instaciada.
+
+Em resumo:
+- Membros estáticos não são instanciados. Basta chamar o membro estático a partir do seu nome.
+
+Exemplo:
+Fazer um programa para ler um valor número qualquer, e daí mostrar quanto seria o valor de uma circunferência e do 
+volume de uma esfera para um raio daquele valor. Informar também o valor de PI com duas casas decimais.
+
+Input/Output:
+Enter radius: 3.0
+Circumference: 18.84
+Volume: 113.04
+PI value: 3.14
+
+Iremos resolver esse problema de três formas diferentes.
+
+1. Criando uma classe qualquer e declarando os métodos na própria classe:
+````java
+package application;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+public class Program {
+    // Membro estático
+    // Final = valor constante(inalterável)
+    public static final double PI = 3.14159;
+    public static void main(String[] args) {
+        // Permite utilizar ponto no lugar de vírgula.
+        Locale.setDefault(new Locale("en", "US"));
+        // Criamos dois objetos, sc e product
+        Scanner sc = new Scanner(System.in);
+        double radius;
+        double circum;
+        double vol;
+
+        System.out.println("Enter radius: ");
+        radius = sc.nextDouble();
+        // Método circumference calcula a cirfunferência dado um raio
+        circum = circumference(radius);
+        // Método volume calcula o volume dado o raio
+        vol = volume(radius);
+
+        System.out.printf("Circumference: %.2f%n", circum);
+        System.out.printf("Volume: %.2f%n", vol);
+        System.out.printf("PI value: %.2f%n", PI);
+    }
+
+    public static double circumference(double radius) {
+        return 2 * PI * radius;
+    }
+
+    public static double volume(double radius) {
+        return 4.0 * PI * Math.pow(radius, 3) / 3;
+    }
+
+}
+````
+
+2. Criando uma classe própria chamada Calculator, onde iremos delegar toda a responsabilidade para ela. Além disso, 
+   a classe Calculator não terá membros estáticos, ou seja, para poder usar os seus membros é necessário criar um 
+   objeto(instância) da classe.
+````java
+package util;
+
+public class Calculator {
+    // Declarando o valor de PI como uma constante
+    public final double PI = 3.14159;
+
+    public double circumference(double radius) {
+        return 2 * PI * radius;
+    }
+
+    public double volume(double radius) {
+        return 4.0 * PI * Math.pow(radius, 3) / 3.0;
+    }
+}
+````
+Classe Program
+````java
+package application;
+
+import util.Calculator;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+public class Program {
+    // Membro estático
+    // Final = valor constante(inalterável)
+    public static final double PI = 3.14159;
+    public static void main(String[] args) {
+        // Permite utilizar ponto no lugar de vírgula.
+        Locale.setDefault(new Locale("en", "US"));
+        // Criamos dois objetos, sc e product
+        Scanner sc = new Scanner(System.in);
+        // Instanciamos a classe Calculator para poder usar os seus membros
+        Calculator calc = new Calculator();
+        double radius;
+        double circum;
+        double vol;
+
+        System.out.println("Enter radius: ");
+        radius = sc.nextDouble();
+        // Chamamos o método circumference
+        circum = calc.circumference(radius);
+        // Chamamos o método volume
+        vol = calc.volume(radius);
+
+        System.out.printf("Circumference: %.2f%n", circum);
+        System.out.printf("Volume: %.2f%n", vol);
+        System.out.printf("PI value: %.2f%n", PI);
+    }
+}
+````
+3. Usando uma classe chamada Calculator que possui todos os seus membros estáticos:
+````java
+package util;
+
+public class Calculator {
+    // Declarando o valor de PI como uma constante
+    public static final double PI = 3.14159;
+
+    public static double circumference(double radius) {
+        return 2 * PI * radius;
+    }
+
+    public static double volume(double radius) {
+        return 4.0 * PI * Math.pow(radius, 3) / 3.0;
+    }
+}
+````
+
+Classe Program
+````java
+package application;
+
+import util.Calculator;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+public class Program {
+    // Membro estático
+    // Final = valor constante(inalterável)
+    public static final double PI = 3.14159;
+    public static void main(String[] args) {
+        // Permite utilizar ponto no lugar de vírgula.
+        Locale.setDefault(new Locale("en", "US"));
+        // Criamos dois objetos, sc e product
+        Scanner sc = new Scanner(System.in);
+        double radius;
+        double circum;
+        double vol;
+
+        System.out.println("Enter radius: ");
+        radius = sc.nextDouble();
+        // Método circumference calcula a cirfunferência dado um raio
+        circum = Calculator.circumference(radius);
+        // Método volume calcula o volume dado o raio
+        vol = Calculator.volume(radius);
+
+        System.out.printf("Circumference: %.2f%n", circum);
+        System.out.printf("Volume: %.2f%n", vol);
+        System.out.printf("PI value: %.2f%n", PI);
+    }
+}
+````
+
+Note que para acessar os membros estáticos nós não precisamos instânciar a classe Calculator, para isso basta 
+utilizar o nome da classe seguido do nome do membro(atributo/método) estático.
+
+### Em resumo:
+- Na classe Math nós usamos os método pow e sqrt por exemplo, note que não é necessário criar uma instância da 
+  classe Math. Isso deve ao fato da classe Math ser estática, ou seja, podemos acessar diretamente seus membros 
+  usando apenas o nome da classe seguido do nome do seu membro.
 [Voltar](../README.md)
