@@ -4,6 +4,14 @@ public class Product {
     public double price;
     public int quantity;
 
+    // Construtor que recebe como argumento os seus atributos
+    public Product(String name, double price, int quantity) {
+        // Quando usamos this estámos nos referindo ao atributo name da classe.
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
     public double totalValueInStock() {
         return quantity * price;
     }
@@ -18,6 +26,14 @@ public class Product {
     }
 
     public String toString() {
-        return name + ", " + "$ " + String.format("%.2f", price) + ", " + quantity + " units, " + "$ " + String.format("%.2f", totalValueInStock());
+        return name
+                + ", "
+                + "$ "
+                + String.format("%.2f", price)
+                + ", "
+                + quantity
+                + " units, "
+                + "$ "
+                + String.format("%.2f", totalValueInStock());
     }
 }
