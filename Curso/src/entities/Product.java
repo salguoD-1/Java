@@ -12,6 +12,12 @@ public class Product {
         this.quantity = quantity;
     }
 
+    // Construtor que inicializa os atributos name e price.
+    public Product(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
     public double totalValueInStock() {
         return quantity * price;
     }

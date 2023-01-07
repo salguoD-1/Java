@@ -22,7 +22,7 @@ public class Program {
 
         // Instanciamos a classe passando name, price e quantity como argumento
         // para o construtor da classe.
-        Product product = new Product(name, price, quantity);
+        Product product = new Product(name, price);
 
         System.out.println();
         System.out.println("Product data: " + product);

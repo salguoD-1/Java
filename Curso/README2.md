@@ -143,6 +143,97 @@ construtor da classe. Dessa forma evitamos erros.
 
 ## Palavra this
 
+1. É uma referência para o próprio objeto
+2. Usos comuns:
+   1. **Diferenciar atributos de variáveis locais**
+   2. **Passar o próprio objeto como argumento na chamada de um método ou construtor**
+
+Usando o exemplo aterior temos que:
+````java
+Product product = new Product("TV", 1500.00, 0);
+````
+
+````java
+public Product(String name, double price, int quantity) {
+    this.name = name;
+    this.price = price;
+    this.quantity = quantity;
+        }
+````
+
+Quando passamos os valores para o construtor temos que esses valores serão armazenados nos atributos name, price e 
+quantity, para isso fazemos o uso da palavra-chave this.
+
+## Sobrecarga
+
+1. É um recurso que uma classe possui de **oferecer mais de uma operação com o mesmo nome, porém com diferentes listas 
+   de parâmetros.**
+
+Proposta de melhoria:
+1. Vamos criar um construtor opcional, o qual recebe apenas nome e preço do produto. A quantidade em estoque deste 
+   novo produto, por padrão, deverá então ser iniciada com valor zero.
+2. Nota: É possível também incluir um construtor padrão
+
+````java
+package entities;
+public class Product {
+   public String name;
+   public double price;
+   public int quantity;
+
+   // Construtor que recebe como argumento os seus atributos
+   public Product(String name, double price, int quantity) {
+      // Quando usamos this estámos nos referindo ao atributo name da classe.
+      this.name = name;
+      this.price = price;
+      this.quantity = quantity;
+   }
+
+   // Construtor que inicializa os atributos name e price.
+   public Product(String name, double price) {
+      this.name = name;
+      this.price = price;
+   }
+
+   public double totalValueInStock() {
+      return quantity * price;
+   }
+
+   public void addProducts(int quantity) {
+      // this = faz autoreferenciamento a variável quantity da classe Product
+      this.quantity += quantity;
+   }
+
+   public void removeProducts(int quantity) {
+      this.quantity -= quantity;
+   }
+
+   public String toString() {
+      return name
+              + ", "
+              + "$ "
+              + String.format("%.2f", price)
+              + ", "
+              + quantity
+              + " units, "
+              + "$ "
+              + String.format("%.2f", totalValueInStock());
+   }
+}
+````
+
+Ou seja, quando passamos apenas dois argumentos para o construtor da classe Product, temos que apenas o segundo 
+construtor será utilizado. Ou seja, disponbilizamos mais de uma versão da mesma operação diferenciando apenas a 
+quantidade de parâmetros.
+
+Por fim, podemos adicionar o construtor padrão passando apenas:
+````java
+public Product() {
+    
+        }
+````
+
+Dessa forma temos três versões de construtores que podemos utilizar.
 
 
 [Voltar](../README.md)
