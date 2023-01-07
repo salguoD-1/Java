@@ -235,5 +235,117 @@ public Product() {
 
 Dessa forma temos três versões de construtores que podemos utilizar.
 
+## Encapsulamento
+
+1. É um princípio que consiste em **esconder detalhes de implementação de uma classe, expondo apenas operações 
+   seguras e que mantenham os objetos em um estado consistente.**
+2. Regra de ouro: O objeto deve sempre estar em um estado consistente, e a própria classe deve garantir isso.
+3. Regra geral básica:
+   1. Um objeto **não** deve expor nenhum atributo(modificador de acesso **private**)
+   2. **Os atributos devem ser acessados por meio de métodos get e set.**
+
+### Padrão para implementação de getters e setters
+````java
+private String name;
+private double price;
+
+public String getName() {
+    return name;
+        }
+public void setName(String name) {
+    this.name = name;
+        }
+        
+public double getPrice() {
+    return price;
+        }
+        
+public void setPrice(double price) {
+    this.price = price;
+        }
+````
+
+No exemplo acima temos dois atributos que utilizam o **modificador de acesso private. Isso significa dizer que esses 
+atributos não podem ser acessador por outras classes.**
+
+A nomenclatura do método para obter os valores dos atributos deve começar com get seguido do nome do atributo em 
+camel case.
+
+Já a nomenclatura para alterar o valor do atributo deve começar com set seguido do nome do atributo em camel case. 
+Como estamos alterando o atributo temos que usar a palavra-chave this para acessar o atributo do objeto.
+
+Por fim, os métodos set e get devem ser declarados após a declaração dos contrutores.
+
+Exemplo de getters e setters:
+````java
+package entities;
+public class Product {
+   private String name;
+   private double price;
+   private int quantity;
+
+   // Construtor que recebe como argumento os seus atributos
+   public Product(String name, double price, int quantity) {
+      // Quando usamos this estámos nos referindo ao atributo name da classe.
+      this.name = name;
+      this.price = price;
+      this.quantity = quantity;
+   }
+
+   // Construtor que inicializa os atributos name e price.
+   public Product(String name, double price) {
+      this.name = name;
+      this.price = price;
+   }
+
+
+   public void setName(String name) {
+      this.name = name;
+   }
+
+   public String getName() {
+      return name;
+   }
+
+   public double getPrice() {
+      return price;
+   }
+
+   public void setPrice(double price) {
+      this.price = price;
+   }
+
+   // Não queremos alterar a quantidade em estoque, apenas saber o total
+   public int getQuantity() {
+      return quantity;
+   }
+
+   public double totalValueInStock() {
+      return quantity * price;
+   }
+
+   public void addProducts(int quantity) {
+      // this = faz autoreferenciamento a variável quantity da classe Product
+      this.quantity += quantity;
+   }
+
+   public void removeProducts(int quantity) {
+      this.quantity -= quantity;
+   }
+
+   public String toString() {
+      return name
+              + ", "
+              + "$ "
+              + String.format("%.2f", price)
+              + ", "
+              + quantity
+              + " units, "
+              + "$ "
+              + String.format("%.2f", totalValueInStock());
+   }
+}
+````
+
 
 [Voltar](../README.md)

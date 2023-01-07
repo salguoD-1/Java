@@ -1,8 +1,8 @@
 package entities;
 public class Product {
-    public String name;
-    public double price;
-    public int quantity;
+    private String name;
+    private double price;
+    private int quantity;
 
     // Construtor que recebe como argumento os seus atributos
     public Product(String name, double price, int quantity) {
@@ -16,6 +16,28 @@ public class Product {
     public Product(String name, double price) {
         this.name = name;
         this.price = price;
+    }
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    // Não queremos alterar a quantidade em estoque, apenas saber o total
+    public int getQuantity() {
+        return quantity;
     }
 
     public double totalValueInStock() {

@@ -22,7 +22,17 @@ public class Program {
 
         // Instanciamos a classe passando name, price e quantity como argumento
         // para o construtor da classe.
-        Product product = new Product(name, price);
+        Product product = new Product(name, price, quantity);
+        // Usando o método setName para alterar o valor do atributo
+        product.setName("Computer");
+        // Usando o método getName para acessar o valor do atrbiuto
+        System.out.println("Update name: " + product.getName());
+        // Usando o método setPrice para alterar o valor do produto
+        product.setPrice(1200.00);
+        // Usando o método getPrice para acessar o valor do atrbiuto
+        System.out.println("Update price: " + product.getPrice());
+        // Usando o método getQuantity para saber o total em estoque
+        System.out.println("Quantity: " + product.getQuantity());
 
         System.out.println();
         System.out.println("Product data: " + product);
