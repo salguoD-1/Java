@@ -347,5 +347,173 @@ public class Product {
 }
 ````
 
+## Modificadores de acesso
+
+1. private: o **membro** só pode ser acessado na **própria classe**
+2. (nada, ou seja, não colocamos nada): o **membro** só pode ser **acessado nas classes do mesmo pacote**
+3. protected: o **membro** só pode ser **acessado no mesmo pacote**, bem como em **subclasses de pacotes diferentes**
+4. public: o **membro** é **acessado por todas classes(ao menos que ele resida em um módulo diferente que não exporte 
+   o pacote onde ele está)**
+
+Abaixo temos toda a descrição visual de como funciona os modificadores de acesso:
+![](images/modificador%20de%20acesso.png)
+[Fonte](https://stackoverflow.com/questions/215497/what-is-the-difference-between-public-protected-package-private-and-private-in)
+
+Exéricio de fixação:
+Em um banco, para se cadastrar uma conta bancária, é necessário informar o número da conta, o nome do
+titular da conta, e o valor de depósito inicial que o titular depositou ao abrir a conta. Este valor de depósito
+inicial, entretanto, é opcional, ou seja: se o titular não tiver dinheiro a depositar no momento de abrir sua
+conta, o depósito inicial não será feito e o saldo inicial da conta será, naturalmente, zero.
+Importante: uma vez que uma conta bancária foi aberta, o número da conta nunca poderá ser alterado. Já
+o nome do titular pode ser alterado (pois uma pessoa pode mudar de nome por ocasião de casamento, por
+exemplo).
+Por fim, o saldo da conta não pode ser alterado livremente. É preciso haver um mecanismo para proteger
+isso. O saldo só aumenta por meio de depósitos, e só diminui por meio de saques. Para cada saque
+realizado, o banco cobra uma taxa de $ 5.00. Nota: a conta pode ficar com saldo negativo se o saldo não for
+suficiente para realizar o saque e/ou pagar a taxa.
+Você deve fazer um programa que realize o cadastro de uma conta, dando opção para que seja ou não
+informado o valor de depósito inicial. Em seguida, realizar um depósito e depois um saque, sempre
+mostrando os dados da conta após cada operação.
+
+Input 1:
+Enter account number: 8532
+Enter account holder: Alex Green
+Is there na initial deposit (y/n)? y
+Enter initial deposit value: 500.00
+Account data:
+Account 8532, Holder: Alex Green, Balance: $ 500.00
+Enter a deposit value: 200.00
+Updated account data:
+Account 8532, Holder: Alex Green, Balance: $ 700.00
+Enter a withdraw value: 300.00
+Updated account data:
+Account 8532, Holder: Alex Green, Balance: $ 395.00
+
+Input 2:
+Enter account number: 7801
+Enter account holder: Maria Brown
+Is there na initial deposit (y/n)? n
+Account data:
+Account 7801, Holder: Maria Brown, Balance: $ 0.00
+Enter a deposit value: 200.00
+Updated account data:
+Account 7801, Holder: Maria Brown, Balance: $ 200.00
+Enter a withdraw value: 198.00
+Updated account data:
+Account 7801, Holder: Maria Brown, Balance: $ -3.00
+
+Classe Account:
+````java
+package entities;
+
+public class Account {
+   private int number;
+   private String holder;
+   private double balance;
+
+   public Account(int number, String holder) {
+       this.number = number;
+       this.holder = holder;
+   }
+
+   public Account(int number, String holder, double initialDeposityAccount) {
+       this.number = number;
+       this.holder = holder;
+       // Por padrão, o valor caso não passado é 0.00
+       deposit(initialDeposityAccount);
+   }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public String getHolder() {
+        return holder;
+    }
+
+    public void setHolder(String holder) {
+        this.holder = holder;
+    }
+
+    public double getBalance() {
+       return balance;
+    }
+
+    public void deposit(double amount) {
+        balance += amount;
+    }
+
+    public void withdraw(double amount) {
+        balance = balance - amount - 5;
+    }
+
+    public String toString() {
+        return "Account " + number + ", Holder: " + holder + String.format(", Balance: $ %.2f", balance);
+    }
+}
+````
+
+Classe ProgramAccount
+````java
+package application;
+
+import entities.Account;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+public class ProgramAccount {
+    public static void main(String[] args) {
+        Locale.setDefault(new Locale("en", "US"));
+        Scanner sc = new Scanner(System.in);
+        Account account;
+        int accountNumber;
+        String accountHolder;
+        char initialDeposity;
+        double accountBalance;
+
+        System.out.print("Enter account number: ");;
+        accountNumber = sc.nextInt();
+
+        // limpa o buffer do teclado
+        sc.nextLine();
+
+        System.out.print("Enter account holder: ");
+        accountHolder = sc.nextLine();
+
+        System.out.print("Is there an initial deposity (y/n): ");
+        initialDeposity = sc.next().toLowerCase().charAt(0);
+
+        // Analisa se o usuário quer fazer um depósito opcional
+        if (initialDeposity == 'y') {
+            System.out.print("Enter initial deposit value: ");
+            accountBalance = sc.nextDouble();
+            // Instânciamos a classe usando o construtor de três argumentos
+            account = new Account(accountNumber, accountHolder, accountBalance);
+        } else {
+            // Instânciamos a classe usando o construtor de dois argumentos
+            account = new Account(accountNumber, accountHolder);
+        }
+
+        System.out.println("\nAccount data: ");
+        System.out.println(account);
+
+        System.out.print("\nEnter a deposit value: ");
+        accountBalance = sc.nextDouble();
+        account.deposit(accountBalance);
+        System.out.println("Updated account data: ");
+        System.out.println(account);
+
+        System.out.print("\nEnter a withdraw value: ");
+        accountBalance = sc.nextDouble();
+        account.withdraw(accountBalance);
+        System.out.println("\nUpdated account data: ");
+        System.out.println(account);
+
+        sc.close();
+    }
+}
+````
+** Note que criamos dois construtores, um com três parâmetros e outro com dois parâmetros.
 
 [Voltar](../README.md)
