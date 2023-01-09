@@ -514,6 +514,6 @@ public class ProgramAccount {
     }
 }
 ````
-** Note que criamos dois construtores, um com três parâmetros e outro com dois parâmetros.**
+**Note que criamos dois construtores, um com três parâmetros e outro com dois parâmetros.**
 
 [Voltar](../README.md)
