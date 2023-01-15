@@ -100,6 +100,45 @@ Vantagens e desvantagens de cada tipo
 
 ![](images/tipos-referencia-valor.PNG)
 
+## Garbage Collector
+1. É um processo que automatiza o gerenciamento de memória de um programa em execução.
+2. O garbage collector monitora os objetos alocados dinamicamente pelo programa (no heap), desalocando aqueles que 
+   não estão mais sendo utilizados.
 
+Exemplo do garbage collector em ação
+![](images/garbage-collector.PNG)
+
+Note que quando fazemos p1 receber p2, temos que o valor de p1 ficará sem uso, nesse caso o garbage collector irá 
+desalocar os recursos anteriormente armazenados na variável p1.
+
+Por fim, variáveis locais(exemplo: variáveis em estruturas if, while etc) serão desalocadas imediatamente assim que 
+seu escopo local sair de execução.
+
+## Vetores
+
+1. Vetores são basicamente um array unidimensional que possui elementos e cada elemento possui um índice, sempre 
+começando no índice 0.
+2. Array é um estrutura de dados:
+   1. Homogênea(dados do mesmo tipo)
+   2. Ordenada(elementos acessados por meio de posições)
+   3. Alocada de uma vez só, em um bloco contíguo de memória
+3. Vantagens:
+   1. Acesso imediato aos elementos pela sua posição
+4. Desvantagens:
+   1. Tamanho fixo
+   2. Dificuldade para se realizar inserções e deleções
+
+Problema exemplo 1:
+Fazer um programa para ler um número inteiro N e a altura de N pessoas. Armazene as N alturas em um vetor. Em 
+seguida, mostrar a altura média dessas pessoas.
+
+Input:
+3
+1.72
+1.56
+1.80
+
+Output:
+AVERAGE HEIGHT = 1.69
 
 [Voltar](../README.md)
