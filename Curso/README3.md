@@ -173,4 +173,93 @@ public class ProgramAverageHeight {
 }
 ````
 
+Problema exemplo 2:
+Fazer um programa para ler um número inteiro N e os dados (nome e preço) de N produtos. Armazene os N produtos em um 
+vetor. Em seguida, mostrar o preço médio dos produtos.
+
+Classe Product2
+```java
+package entities;
+
+public class Product2 {
+    private String name;
+    private double price;
+
+    // Construtor com dois parâmetros
+    public Product2(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    public String getName() {
+        return  name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+}
+```
+
+Classe ProgramAveragePrice
+```java
+package application;
+
+import entities.Product2;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+public class ProgramAveragePrice {
+   public static void main(String[] args) {
+      Locale.setDefault(Locale.US);
+      Scanner sc = new Scanner(System.in);
+
+      System.out.print("Enter a number: ");
+      int number = sc.nextInt();
+      // Limpa o buffer do teclado
+      sc.nextLine();
+      String productName;
+      double productPrice;
+      double averagePrice = 0;
+      Product2[] vect = new Product2[number];
+
+      for (int i = 0; i < number; i++) {
+         System.out.print("Product name: ");
+         productName = sc.next();
+         System.out.print("Product price: ");
+         productPrice = sc.nextDouble();
+         // Instanciamos a classe Product2 passando os dois argumentos para o construtor
+         vect[i] = new Product2(productName, productPrice);
+      }
+
+      for (int i = 0; i < number; i++) {
+         // Para cada objeto da classe nós acessamos o seu valor e armazenamos
+         // na variável abaixo.
+         averagePrice += vect[i].getPrice();
+      }
+
+      System.out.printf("AVERAGE PRICE = %.2f%n", averagePrice / number);
+
+   }
+}
+```
+
+No exemplo acima nós criamos um "array de classe" onde passamos um valor n como quantidade de elementos que esse 
+array irá armazenar. Note que criamos uma variável chamada vect que é um vetor e essa variável será armazenada na 
+memória stack que irá apontar a referência para os n slots de memória na memória heap. Porém, esses valores do vetor 
+são nulos, para isso é necessário instanciar esse objeto atribuindo valores para ele como vemos no exemplo a direita.
+![](images/array-de-classe.png)
+
+Ou seja, de forma resumida, criamos três instâncias da classe Product2 passando o nome e o preço do produto, depois 
+acessamos o valor de cada produto usando o método getPrice.
+
 [Voltar](../README.md)
