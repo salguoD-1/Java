@@ -447,5 +447,45 @@ Podemos ler o programa acima da seguinte forma: Para cada objeto nome(apelido) c
 algo...
 
 ## Listas
+1. Lista é uma estrutura de dados:
+   1. Homogênea (dados do mesmo tipo)
+   2. Ordenada (elementos acessados por meio de posições)
+   3. Inicia vazia, e seus elementos são alocados **sob demanda**
+   4. Cada elemento ocupa um "nó" (ou nodo) da lista
+2. Tipo (interface): List
+3. Classes que implementam: ArrayList, LinkedList, etc.
+4. Vantagens:
+   1. Tamanho variável
+   2. Facilidade para se realizar inserções e deleções
+5. Desvantagens:
+   1. Acesso sequencial ao elementos
+
+![](images/list.png)
+
+### Operações envolvendo listas
+1. Tamanho da lista: size()
+2. Inserir elementos na lista: add(obj), add(int, obj)
+3. Remover elementos da lista: remove(obj), remove(int), removeIf(Predicate)
+4. Encontrar posição de elemento: indexOf(obj), lastIndexOf(obj)
+5. Filtrar lista com base em predicados:
+```java
+List<Integer> result = list.stream().filter(x -> x > 4).collect(Collectors.
+   toList());
+```
+6. Encontrar primeira ocorrência com base em predicado:
+```java
+Integer result = list.stream().filter(x -> x > 4).findFirst().orElse(null);
+```
+
+**NOTA 1:** A lista não aceita tipos primitivos, apenas wrapper classes.
+**NOTA 2:** Os símbolos <> são chamados de generics. Eles servem para parametrizar um tipo de uma determinada coleção.
+**NOTA 3:** O comando new ArrayList<>() serve para instânciar a classe ArrayList que implementa a interface List. O 
+tipo em sí é uma interface.
+
+A classe ArrayList é extremamente otimizada, ela faz uso tanto das qualidades de um array como de uma lista.
+
+
+# PAREI EM 12:30
+
 
 [Voltar](../README.md)
