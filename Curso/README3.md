@@ -380,4 +380,72 @@ public class ProgramRoomRent {
 }
 ```
 
+## Boxing
+1. É o processo de conversão de um objeto tipo valor para um objeto tipo referência compartível
+
+![](images/boxing.png)
+
+No exemplo acima passamos um valor x do tipo primitivo para um objeto, esse objeto irá apontar para esse valor na 
+memória heap.
+
+## Unboxing
+1. É o processo de conversão de um objeto tipo referência para um objeto tipo valor compatível
+
+![](images/unboxing.png)
+
+No exemplo acima nós pegamos uma variável do tipo objeto e fazemos o casting, transformando o valor dela para um 
+tipo primitivo. Esse processo faz y receber 20 direto na memória stack.
+
+## Wrapper Classes
+1. São classes equivalentes aos tipos primitivos
+2. Boxing e Unboxing é natural na linguagem
+3. Uso comum:
+   1. Campos de entidades em sistemas de informação (IMPORTANTE!)
+      1. Pois tem tipos referência (classes) aceitam valor null e usufruem dos recursos OO.
+
+Exemplo:
+```java
+public class Product {
+    public String name;
+    public Double price;
+    public Integer quantity;
+}
+```
+
+Note que usamos as wrapper classes, é recomendado pois caso o valor não seja passado, teremos um valor null.
+
+## Laço `for each`
+
+O laço for each possui uma sintaxe opcional e simplificada para percorrer coleções.
+
+Sintaxe:
+```java
+for (Tipo apelido: coleção){
+   <comando 1>
+   <comando 2>
+}
+```
+
+Exemplo real:
+```java
+package application;
+
+public class ProgramForEach {
+    public static void main(String[] args) {
+        // Instânciamos um array de Strings e inicializamos com 3 valores
+        String[] vect = new String[] {"Maria", "Bob", "Alex"};
+
+        // Tipo de dado dos elementos - Nome(Apelido) : nome da coleção(vect)
+        for (String nome : vect) {
+            System.out.println(nome);
+        }
+    }
+}
+```
+
+Podemos ler o programa acima da seguinte forma: Para cada objeto nome(apelido) contido em vect(tipo da coleção) faça 
+algo...
+
+## Listas
+
 [Voltar](../README.md)
