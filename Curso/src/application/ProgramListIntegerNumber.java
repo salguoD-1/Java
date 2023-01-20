@@ -2,6 +2,7 @@ package application;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProgramListIntegerNumber {
     public static void main(String[] args) {
@@ -41,5 +42,15 @@ public class ProgramListIntegerNumber {
         // Quando o elemento não existe, retorna -1
         System.out.println("Index of PessoaX: " + list.indexOf("PessoaX"));
 
+        // Armazena o resultado filtrado na lista result.
+        List<String> result = list.stream().filter(x -> x.charAt(0) == 'A').collect(Collectors.toList());
+        // Usando um laço for each para percorrer os elementos da lista
+        for (String value: result) {
+            System.out.println(value);
+        }
+
+        // Achando o primeiro elemento de uma lista que atende a um determinado preciado
+        // O método findFirst retorna o primeiro elemento que atende o predicado, caso não haja, retorna null com o método orElse.
+        String name = list.stream().filter(x -> x.charAt(0) == 'A').findFirst().orElse(null);
     }
 }
