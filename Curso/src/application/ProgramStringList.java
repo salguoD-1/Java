@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ProgramListIntegerNumber {
+public class ProgramStringList {
     public static void main(String[] args) {
         List<String> list = new ArrayList<>();
 
@@ -52,5 +52,6 @@ public class ProgramListIntegerNumber {
         // Achando o primeiro elemento de uma lista que atende a um determinado preciado
         // O método findFirst retorna o primeiro elemento que atende o predicado, caso não haja, retorna null com o método orElse.
         String name = list.stream().filter(x -> x.charAt(0) == 'A').findFirst().orElse(null);
+        System.out.println(name);
     }
 }
