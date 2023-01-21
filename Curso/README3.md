@@ -603,6 +603,114 @@ List of employees:
 333, Maria Brown, 4000.00
 536, Alex Grey, 3000.00
 
-O resultado se encontra nos arquivos Employee2 e ProgramEmployeeIncreaseSalary.
+Classe Employee2
+```java
+package entities;
+
+public class Employee2 {
+    private Integer id;
+    private String name;
+    private Double salary;
+
+    public Employee2(Integer id, String name, Double salary) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+    }
+
+    public void increaseSalary(Double percentage) {
+        salary = (salary * percentage / 100) + salary;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%d, %s, %.2f", id, name, salary);
+    }
+}
+```
+
+Classe ProgramEmployeeIncreaseSalary
+```java
+package application;
+
+import entities.Employee2;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
+
+public class ProgramEmployeeIncreaseSalary {
+    public static void main(String[] args) {
+        Locale.setDefault(Locale.US);
+        Scanner sc = new Scanner(System.in);
+
+        List<Employee2> employee = new ArrayList<>();
+        int totalOfEmployees;
+        int employeeId;
+        int employeeIdIncreaseSalary;
+        String employeeName;
+        double employeeSalary;
+        double percentage;
+
+        System.out.print("How many employees will be registered? ");
+        totalOfEmployees = sc.nextInt();
+
+        for (int i = 0; i < totalOfEmployees; i++) {
+            sc.nextLine();
+            System.out.printf("Employee #%d: %n", i + 1);
+            System.out.print("Id: ");
+            employeeId = sc.nextInt();
+            while (hasId(employee, employeeId)) {
+                System.out.print("Id already taken. Try again: ");
+                employeeId = sc.nextInt();
+            }
+
+            System.out.print("Name: ");
+            sc.nextLine();
+            employeeName = sc.nextLine();
+            System.out.print("Salary: ");
+            employeeSalary = sc.nextDouble();
+            // Criamos uma instância da classe Employee2 inicializando o construtor.
+            employee.add(new Employee2(employeeId, employeeName, employeeSalary));
+        }
+
+        System.out.printf("%nEnter the employee id that will have salary increase: ");
+        employeeIdIncreaseSalary = sc.nextInt();
+        Employee2 emp = employee.stream().filter(id -> id.getId() == employeeIdIncreaseSalary).findFirst().orElse(null);
+
+        if (emp == null) {
+            System.out.println("This id does not exist!");
+        } else {
+            System.out.print("Enter the percentage: ");
+            percentage = sc.nextDouble();
+            emp.increaseSalary(percentage);
+        }
+
+        System.out.printf("%nList of employees:%n");
+        for (Employee2 obj : employee) {
+            System.out.println(obj);
+        }
+    }
+
+    public static boolean hasId(List<Employee2> employee, int employeeId) {
+        Employee2 emp = employee.stream().filter(empId -> empId.getId() == employeeId).findFirst().orElse(null);
+        return emp != null;
+    }
+}
+```
+
+Algumas Explicações:
+1. Primeiramente criamos uma lista(ArrayList) do tipo Employee2, isso é necessário para podermos trabalhar com listas.
+2. Criamos um método hasId que recebe um objeto e uma variável como argumento, isso se deve para consultar se existe 
+   o Id na lista. Note que passamos um parâmetro que na verdade é uma lista para o método hasId. Dentro do método 
+   hasId, trabalhamos com stream e o método filter(lambda).
+3. Instaciamos um novo objeto(emp) para analisar se o id está vazio(ou seja, se não foi passado nada). Caso não 
+   esteja vazio, é solicitado uma porcentagem e passamos esse valor chamando o método increaseSalary. Por fim usamos 
+   um laço for each e exibimos o resultado na tela.
 
 [Voltar](../README.md)
