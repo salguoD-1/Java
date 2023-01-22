@@ -11,8 +11,8 @@ public class Employee2 {
         this.salary = salary;
     }
 
-    public void increaseSalary(Double percentage) {
-        salary = (salary * percentage / 100) + salary;
+    public void increaseSalary(double percentage) {
+        salary += salary + (salary * percentage / 100);
     }
 
     public Integer getId() {

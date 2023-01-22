@@ -713,4 +713,21 @@ Algumas Explicações:
    esteja vazio, é solicitado uma porcentagem e passamos esse valor chamando o método increaseSalary. Por fim usamos 
    um laço for each e exibimos o resultado na tela.
 
+## Matrizes
+1. Em programação, matriz é o nome dado a arranjos bidimensionais
+   1. Atenção: "Vetor de Vetores"
+2. Arranjo(array) é uma estrutura de dados:
+   1. Homogênea(dados do mesmo tipo)
+   2. Ordenada(elementos acessados por meio de posições)
+   3. Alocada de uma vez só, em um bloco contíguo de memória
+3. Vantagens:
+   1. Acesso imediato aos elementos pela sua posição
+4. Desvantagens:
+   1. Tamanho fixo
+   2. Dificuldade para se realizar inserções e deleções
+
+![](images/matriz.png)
+
+Na imagem acima temos um exemplo de matriz, que é representada por linhas e colunas.
+
 [Voltar](../README.md)
