@@ -63,6 +63,34 @@ Padrão de horas em texto.
    3. 2022-07-23T14:52:09-03:00
 
 
+## Operações importantes com data-hora
+1. Instanciação
+   1. (agora) -> Data-hora
+   2. Texto ISO 8601 -> Data-hora
+   3. Texto foramto customizado -> Data-hora
+   4. dia, mês, ano, [horário] -> Data-hora local
+2. Formatação
+   1. Data-hora -> Texto ISO 8601
+   2. Data-hora -> Texto formato customizado
+3. Obter dados de uma data-hora local
+   1. Data-hora local -> dia, mês, ano, horário
+4. Converter data-hora global para local
+   1. Data-hora global, timezone (sistema local) -> Data-hora local
+5. Cálculos com data-hora
+   1. Data-hora +/- tempo -> Data-hora
+   2. Data-hora 1, Data-hora 2 -> Duração
+
+## Principais tipos Java (versão 8+)
+1. Data-hora local
+   1. LocalDate
+   2. LocalDateTime
+2. Data-hora global
+   1. Instant
+3. Duração
+   1. Duration
+4. Outros
+   1. ZoneId
+   2. ChronoUnit
 
 
 [Voltar](../README.md)
