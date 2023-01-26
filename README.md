@@ -1,4 +1,4 @@
-# Material de estudo da linguagem Java
+# Material de estudo da linguagem Java e do paradigma OO
 
 [Básico](Curso/README.md)
 

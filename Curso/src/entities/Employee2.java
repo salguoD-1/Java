@@ -12,7 +12,7 @@ public class Employee2 {
     }
 
     public void increaseSalary(double percentage) {
-        salary += salary + (salary * percentage / 100);
+        salary = salary + (salary * percentage / 100);
     }
 
     public Integer getId() {
