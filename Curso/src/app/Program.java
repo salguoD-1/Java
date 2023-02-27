@@ -1,9 +1,7 @@
 package app;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
 
 public class Program {
     public static void main(String[] args) {
@@ -13,27 +11,39 @@ public class Program {
         LocalDateTime d05 = LocalDateTime.parse("2022-07-20T01:30:26");
         Instant d06 = Instant.parse("2022-07-20T01:30:26Z");
 
-        // Converte uma data-hora global para uma data-hora local considerando o timezone da máquina.
-        LocalDate r1 = LocalDate.ofInstant(d06, ZoneId.systemDefault());
-        // Horário local de portugal
-        LocalDate r2 = LocalDate.ofInstant(d06, ZoneId.of("Portugal"));
-        // Pega a data-hora local do sistema em relação a um fuso horário
-        LocalDateTime r3 = LocalDateTime.ofInstant(d06, ZoneId.systemDefault());
-        // Pega a data-hora local do sistema em relação a um fuso horário
-        LocalDateTime r4 = LocalDateTime.ofInstant(d06, ZoneId.of("Portugal"));
+        // Usamos o objeto d04 com o método minusDay que subtrai os dias passados por argumento
+        LocalDate pastWeekLocalDate = d04.minusDays(7);
+        // Armazena o valor do objeto d04 + 7 dias
+        LocalDate nextWeekLocal = d04.plusDays(7);
 
-        System.out.println("r1 = " + r1);
-        System.out.println("r2 = " + r2);
-        System.out.println("r3 = " + r3);
-        System.out.println("r4 = " + r4);
+        System.out.println("pastWeekLocalDate = " + pastWeekLocalDate);
+        System.out.println("nextWeekLocal = " + nextWeekLocal);
 
-        // Pegando o dia, mês e ano de uma data-local
-        System.out.println("d04 dia = " + d04.getDayOfMonth());
-        System.out.println("d04 mês = " + d04.getMonthValue());
-        System.out.println("d04 ano = " + d04.getYear());
+        // Adiciona/subtrai as datas + hora.
+        LocalDateTime pastWeekLocalDateTime = d05.minusDays(7);
+        LocalDateTime nextWeekLocalDateTime = d05.plusDays(7);
 
-        System.out.println("d05 hora = " + d05.getHour());
-        System.out.println("d05 minutos  = " + d05.getMinute());
-        System.out.println("d05 segundos = " + d05.getSecond());
+        System.out.println("pastWeekLocalDateTime = " + pastWeekLocalDateTime);
+        System.out.println("nextWeekLocalDateTime = " + nextWeekLocalDateTime);
+
+        // Usamos o método minus e plus seguido da classe ChronoUnit e a constante DAYS.
+        Instant pastWeekInstant = d06.minus(7, ChronoUnit.DAYS);
+        Instant nextWeekInstant = d06.plus(7, ChronoUnit.DAYS);
+
+        System.out.println("pastWeekInstant = " + pastWeekInstant);
+        System.out.println("nextWeekInstant = " + nextWeekInstant);
+
+        // Usamos a classe duration para saber a duração entre duas data-horas
+        // com o método between que recebe dois parametros.
+        Duration t1 = Duration.between(pastWeekLocalDateTime, d05);
+        // Exibe o resultado da diferença em dias
+        System.out.println("t1 = " + t1.toDays());
+
+        // Método atStartOfDay converte de LocalDate para LocalDateTime quando der meia noite
+        Duration t2 = Duration.between(pastWeekLocalDate.atStartOfDay(), d04.atStartOfDay());
+        System.out.println("t2 = " + t2.toDays());
+
+        Duration t3 = Duration.between(pastWeekInstant, d06);
+        System.out.println("t3 = " + t3.toDays());
     }
 }
