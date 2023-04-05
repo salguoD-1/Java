@@ -458,3 +458,5 @@ public class WorkerProgram {
 Note que na classe Worker, nós usamos o enum WorkerLevel e usamos a classe Department, dessa forma estamos fazendo 
 uso da composição. Note também que estamos fazendo uso de uma lista(ArrayList) com a classe HourContract, tudo isso 
 dentro da classe Worker. Ou seja, temos uma relação de todo(Worker) e partes (HourContract e Department).
+
+[Voltar](../README.md)
