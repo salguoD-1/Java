@@ -140,3 +140,59 @@ public class AppOrder {
 1. Cada constante do tipo enum é enumerada a partir do 0
 
 ![](images/enum.PNG)
+
+## Um pouco sobre design
+
+#### Categorias de classes
+
+1. Em um sistema orientado a objetos, de modo geral "tudo" é objeto.
+2. **Por questões de design tais como organização, flexibilidade, reuso, delegação, etc., há várias categorias de 
+   classes:**
+![](images/categorias-de-classes.PNG)
+
+Em resumo, uma view é basicamente a interface(tela), já o controller é responsável pela conectividade entre a tela e 
+o sistema. Além disso, temos as entities de negócio(como clientes, pedidos etc.), temos classes que representam 
+services e repositories(nesse caso é responsável por acessar dados de um banco de dados, por exemplo.)
+
+![](images/entities.PNG)
+
+Acima temos um diagrama que representa entidades, como é o caso da classe Order que possui relação com as classes 
+OrderItem, Product e Client. Ou seja, são várias entidades de negócio associadas entre sí.
+
+Um outro exemplo de classes é o caso da classe Services
+
+![](images/services.PNG)
+
+No exemplo acima temos um serviço de save(salvar) e outro de search(pesquisar) pedidos. Esse tipo de serviço pode 
+estar associado a um repositório de pedidos que pode fazer operações envolvendo banco de dados(CrudRepository). Além 
+disso, esse serviço de OrderService está associado a um serviço de email(EmailService) que está associado a um 
+serviço de autenticação(AuthService). Ou seja, esses serviços estão associados entre sí.
+
+## Composição
+
+1. **É um tipo de associação que permite que um objeto contenha outro**
+2. **Relação "tem-um" ou "tem-vários"**
+3. Vantagens
+   1. Organização: divisão de responsabilidade
+   2. Coesão(cada objeto é responsável por uma coisa)
+   3. Flexibilidade
+   4. Reuso
+4. NOTA: Embora o símbolo UML para composição(toda-parte) seja o diamante preto, neste contexto estamos chamando de 
+   composição qualquer associação tipo "tem-um" e "tem-vários".
+
+Abaixo temos uma foto que retrata a nota acima
+
+![](images/entities.PNG)
+
+Note que a classe Order tem uma seta que possui um diamante preto e um asterístico, essa seta indica uma relação de 
+composição(uma Order contém vários OrderItem).
+
+NOTA: A classe que estiver com o símbolo de diamante preto é a classe que representa o "todo", já o outro lado é o 
+lado das "partes". Chamamos isso de associação de composição. No caso da classe Client temos uma composição de 
+objetos mais simples, note que não usamos o diamante preto nesse caso.
+
+Além disso, a composição pode ocorrer com Services(serviços) como visto no diagrama abaixo
+
+![](images/services.PNG)
+
+No exemplo acima também temos uma forma de composição.
