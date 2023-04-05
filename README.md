@@ -7,3 +7,5 @@
 [Comportamento de memória, arrays e listas](Curso/README3.md)
 
 [Tópicos especiais em Java: data-hora](Curso/DATAHORA.md)
+
+[Enumerações e Composição](Curso/ENUMCOMP.md)
