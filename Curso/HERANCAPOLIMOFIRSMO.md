@@ -138,5 +138,11 @@ permitimos que o atributo balance seja acessado por subclasses do mesmo pacote o
 
 ## Upcasting e Downcasting
 
+![](images/upcastingdowncasting.PNG)
+
+### Exemplo do uso de Upcasting e Downcasting
+![](images/updownex.PNG)
+
+
 [Voltar](../README.md)
 
