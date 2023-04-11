@@ -9,3 +9,5 @@
 [Tópicos especiais em Java: data-hora](Curso/DATAHORA.md)
 
 [Enumerações e Composição](Curso/ENUMCOMP.md)
+
+[Herança e Polimorfismo](Curso/HERANCAPOLIMOFIRSMO.md)
