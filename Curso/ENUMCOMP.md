@@ -459,4 +459,365 @@ Note que na classe Worker, nós usamos o enum WorkerLevel e usamos a classe Depa
 uso da composição. Note também que estamos fazendo uso de uma lista(ArrayList) com a classe HourContract, tudo isso 
 dentro da classe Worker. Ou seja, temos uma relação de todo(Worker) e partes (HourContract e Department).
 
+### Exercício 2
+
+Instancie manualmente (hard code) os objetos mostrados abaixo e mostre-os
+na tela do terminal, conforme exemplo.
+
+![](images/ex2comp.PNG)
+![](images/ex2compoutput.PNG)
+
+### Exercício 3
+
+Ler os dados de um pedido com N itens (N fornecido pelo usuário). Depois, mostrar um
+sumário do pedido conforme exemplo (próxima página). Nota: o instante do pedido deve ser
+o instante do sistema: new Date()
+
+![](images/ex3comp.PNG)
+
+O exercício foi resolvido usando um enum chamado OrderStatus1 seguido das classes:
+1. Client
+2. OrderItem
+3. Product3
+4. Order1
+5. AppOrder1
+
+A classe OrderItem realize composição com a classe Product3. A classe Order1 realiza composição com as classes Client e OrderItem, além do enum OrderStatus1.
+
+#### Enum OrderStatus1
+
+````java
+package entities.enums;
+
+public enum OrderStatus1 {
+    PENDING_PAYMENT,
+    PROCESSING,
+    SHIPPED,
+    DELIVERED
+}
+
+````
+
+#### Classe Client
+
+````java
+package entities;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Client {
+    private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    private String name;
+    private String email;
+    private Date birthDate;
+
+    public Client() {
+
+    }
+
+    public Client(String name, String email, Date birthDate) {
+        this.name = name;
+        this.email = email;
+        this.birthDate = birthDate;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    @Override
+    public String toString() {
+        return name + " (" + sdf.format(birthDate) + ") - " + email;
+    }
+}
+````
+
+#### Classe Product3
+
+````java
+package entities;
+
+public class Product3 {
+    private String name;
+    private Double price;
+
+    public Product3() {
+
+    }
+
+    public Product3(String name, Double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+}
+````
+
+#### Classe OrderItem
+
+````java
+package entities;
+
+public class OrderItem {
+    private Integer quantity;
+    private Double price;
+    // Composição da classe Product3 com a classe OrderItem
+    private Product3 product3;
+
+    public OrderItem() {
+
+    }
+
+    public OrderItem(Integer quantity, Double price, Product3 product3) {
+        this.quantity = quantity;
+        this.price = price;
+        this.product3 = product3;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public double subTotal() {
+        return quantity * price;
+    }
+
+    public Product3 getProduct3() {
+        return product3;
+    }
+
+    public void setProduct3(Product3 product3) {
+        this.product3 = product3;
+    }
+
+    // Retorna os dados formatados
+    @Override
+    public String toString() {
+        return getProduct3().getName()
+                + ", $" + String.format("%.2f", getPrice())
+                + ", Quantity " + getQuantity()
+                + ", Subtotal: $" + String.format("%.2f", subTotal());
+    }
+}
+````
+
+#### Classe Order1
+
+````java
+package entities;
+
+import entities.enums.OrderStatus1;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+public class Order1 {
+    private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    private Date moment = new Date();
+    private OrderStatus1 status;
+    private Client client;
+    private List<OrderItem> items = new ArrayList<>();
+
+
+    public Order1() {
+
+    }
+
+    public Order1(Date moment, OrderStatus1 status, Client client) {
+        this.moment = moment;
+        this.status = status;
+        this.client = client;
+    }
+
+    public Date getMoment() {
+        return moment;
+    }
+
+    public void setMoment(Date moment) {
+        this.moment = moment;
+    }
+
+    public OrderStatus1 getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStatus1 status) {
+        this.status = status;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    // Não se usa!
+//    public List<OrderItem> getItems() {
+//        return items;
+//    }
+
+    // Não se usa!
+//    public void setItems(List<OrderItem> items) {
+//        this.items = items;
+//    }
+
+    public void addItem(OrderItem item) {
+        items.add(item);
+    }
+
+    public void removeItem(OrderItem item) {
+        items.remove(item);
+    }
+
+    public double total() {
+        double sum = 0;
+
+        // Delegamos o cálculo para o método subTotal()
+        for (OrderItem it : items) {
+            sum += it.subTotal();
+        }
+
+        return sum;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Order moment: ");
+        sb.append(sdf.format(moment) + "\n");
+        sb.append("Order status: ");
+        sb.append(status + "\n");
+        sb.append("Client: ");
+        sb.append(client + "\n");
+        sb.append("Order items: ");
+        for (OrderItem item: items) {
+            sb.append(item + "\n");
+        }
+        sb.append("Total price: $");
+        sb.append(String.format("%.2f", total()));
+        return sb.toString();
+    }
+}
+````
+
+#### Classe AppOrder1
+
+````java
+package application;
+
+import entities.Client;
+import entities.Order1;
+import entities.OrderItem;
+import entities.Product3;
+import entities.enums.OrderStatus1;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Scanner;
+
+public class AppOrder1 {
+    public static void main(String[] args) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Scanner sc = new Scanner(System.in);
+        Locale.setDefault(Locale.US);
+
+        System.out.println("Enter client data:");
+        System.out.print("Name: ");
+        String name = sc.nextLine();
+        System.out.print("Email: ");
+        String email = sc.next();
+        System.out.print("Birth date (DD/MM/YYYY): ");
+        Date birthDate = sdf.parse(sc.next());
+
+        Client client = new Client(name, email, birthDate);
+
+        System.out.println("Enter order data:");
+        System.out.print("Status: ");
+        OrderStatus1 status = OrderStatus1.valueOf(sc.next());
+
+        Order1 order = new Order1(new Date(), status, client);
+
+        System.out.print("How many items to this order? ");
+        int n = sc.nextInt();
+        for (int i=1; i<=n; i++) {
+            System.out.println("Enter #" + i + " item data:");
+            System.out.print("Product name: ");
+            sc.nextLine();
+            String productName = sc.nextLine();
+            System.out.print("Product price: ");
+            double productPrice = sc.nextDouble();
+
+            Product3 product = new Product3(productName, productPrice);
+
+            System.out.print("Quantity: ");
+            int quantity = sc.nextInt();
+
+            OrderItem orderItem = new OrderItem(quantity, productPrice, product);
+
+            order.addItem(orderItem);
+        }
+
+        System.out.println();
+        System.out.println("ORDER SUMMARY:");
+        System.out.println(order);
+
+        sc.close();
+    }
+}
+````
+
 [Voltar](../README.md)
