@@ -669,5 +669,183 @@ acrescentada ao preço final do produto.
 
 ![](images/poliexexex.PNG)
 
+Resolução:
+
+#### Classe Product
+
+````java
+package newentities;
+
+public class Product {
+    private String name;
+    private Double price;
+
+    public Product() {
+
+    }
+
+    public Product(String name, Double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String priceTag() {
+        return name + " $ " + String.format("%.2f", price);
+    }
+}
+````
+
+#### Classe ImportedProduct
+
+````java
+package newentities;
+
+public class ImportedProduct extends Product {
+    private Double customFee;
+
+    public ImportedProduct() {
+
+    }
+
+    public ImportedProduct(String name, Double price, Double customFee) {
+        super(name, price);
+        this.customFee = customFee;
+    }
+
+    public Double getCustomFee() {
+        return customFee;
+    }
+
+    public void setCustomFee(Double customFee) {
+        this.customFee = customFee;
+    }
+
+    public Double totalPrice() {
+        return super.getPrice() + customFee;
+    }
+
+    @Override
+    public String priceTag() {
+        return getName() + " $ " + String.format("%.2f", totalPrice()) + " (Customs fee: $ " + String.format("%.2f", customFee) + ")";
+    }
+}
+````
+
+#### Classe UsedProduct
+
+````java
+package newentities;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+public class UsedProduct extends Product {
+    private LocalDate manufactureDate;
+
+    public UsedProduct() {
+
+    }
+
+    public UsedProduct(String name, Double price, LocalDate manufactureDate) {
+        super(name, price);
+        this.manufactureDate = manufactureDate;
+    }
+
+    public LocalDate getManufactureDate() {
+        return manufactureDate;
+    }
+
+    public void setManufactureDate(LocalDate manufactureDate) {
+        this.manufactureDate = manufactureDate;
+    }
+
+    @Override
+    public String priceTag() {
+        return super.getName() + " (used) " + "$ " + String.format("%.2f", super.getPrice()) + " (Manufacture date: " + manufactureDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + ")";
+    }
+}
+````
+
+#### Classe ProgramProduct
+
+````java
+package newapplication;
+
+import newentities.ImportedProduct;
+import newentities.Product;
+import newentities.UsedProduct;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+
+public class ProgramProduct {
+    public static void main(String[] args) throws ParseException {
+        Scanner sc = new Scanner(System.in);
+        Locale.setDefault(Locale.US);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        List<Product> listProduct = new ArrayList<>();
+
+        System.out.print("Enter the number of products: ");
+        int totalProducts = sc.nextInt();
+
+        for (int i = 1; i <= totalProducts; i++) {
+            System.out.println("Product #" + i + " data:");
+            // c/u/i = comum, usado e importado
+            System.out.print("Common, used or imported (c/u/i)? ");
+            char ch = sc.next().charAt(0);
+            sc.nextLine();
+            System.out.print("Name: ");
+            String name = sc.nextLine();
+            System.out.print("Price: ");
+            double price = sc.nextDouble();
+
+            if (ch == 'i') {
+                System.out.print("Custom fee: ");
+                double customFee = sc.nextDouble();
+                Product product = new ImportedProduct(name, price, customFee);
+                listProduct.add(product);
+            } else if (ch == 'u') {
+                System.out.print("Manufacture date (DD/MM/YYYY): ");
+                LocalDate date = LocalDate.parse(sc.next(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                Product product = new UsedProduct(name, price, date);
+                listProduct.add(product);
+            } else if (ch == 'c') {
+                Product product = new Product(name, price);
+                listProduct.add(product);
+            }
+        }
+
+        System.out.println();
+        System.out.println("PRICE TAGS: ");
+        for (Product product : listProduct) {
+            System.out.println(product.priceTag());
+        }
+
+        sc.close();
+    }
+}
+````
+
+Foi utilizado o LocalDate para pegar a data local.
+
 [Voltar](../README.md)
 
