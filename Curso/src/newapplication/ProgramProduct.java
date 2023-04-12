@@ -13,7 +13,6 @@ public class ProgramProduct {
     public static void main(String[] args) throws ParseException {
         Scanner sc = new Scanner(System.in);
         Locale.setDefault(Locale.US);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         List<Product> listProduct = new ArrayList<>();
 
         System.out.print("Enter the number of products: ");
